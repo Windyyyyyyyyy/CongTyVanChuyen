@@ -416,6 +416,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\NVien.cshtml" />
+    <Content Include="Views\Home\DichVu.cshtml" />
+    <Content Include="Views\Home\TraCuuDonHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

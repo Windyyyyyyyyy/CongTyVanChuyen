@@ -26,5 +26,19 @@ namespace CongTyVanChuyen.Controllers
 
             return View();
         }
+
+        public ActionResult DichVu()
+        {
+            ViewBag.Message = "Dịch vụ";
+
+            return View();
+        }
+
+        public ActionResult TraCuuDonHang()
+        {
+            ViewBag.Message = "Tra cứu đơn hàng";
+
+            return View();
+        }
     }
 }

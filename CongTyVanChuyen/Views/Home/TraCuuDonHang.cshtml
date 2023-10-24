@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Tra Cứu Đơn Hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div>
+    <div style="position:relative;background-color:#EE0033;width:320px;height:60px;color:white;border-radius:15px;left:600px">
+        <h2 style="position:absolute;left:35px;top:10px">Tra Cứu Đơn Hàng</h2>
+    </div>
+</div>
+<br />
+<div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, 0%); width: 600px; height: 200px; border: 3px outset #f7f8fc; border-radius: 40px ">
+    <h3 style="position: relative; font-weight: bold; left: 5%; top:15px;">Nhập mã đơn hàng :</h3>
+    <form action="/tim-kiem-bill" method="POST">
+        <div style="position: relative; font-weight: bold; left: 5%;top:25px; width: 500px " class="form-group">
+            <input type="text" class="form-control" name="bill_numbers" placeholder="VD: DH001">
+        </div>
+        <div class="form-group" style="position: relative; font-weight: bold; left: 45%;top:40px;">
+            <input type="submit" class="btn btn-primary" value="Tìm kiếm">
+        </div>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      // Kiểm tra số bill
+      $("input[name='bill_numbers']").on("keyup", function() {
+        var billNumbers = $(this).val();
+        billNumbers = billNumbers.replace(/\s+/g, "");
+        if (billNumbers === "") {
+          $("input[name='bill_numbers']").css("border-color", "red");
+          $("input[name='bill_numbers']").attr("placeholder", "Vui lòng nhập số bill");
+        } else {
+          $("input[name='bill_numbers']").css("border-color", "green");
+          $("input[name='bill_numbers']").attr("placeholder", "");
+        }
+      });
+    });
+    </script>
+</div>
+<br />
+<br />
+
