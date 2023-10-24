@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="06b9dfe2624646c0bb7674b929693472" Name="Diagram1">
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.CHITIETDVC" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.CHUCUAHANG" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.DONVANCHUYEN" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.KHOHANG" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.LOAIPHIEU" Width="1.5" PointX="6" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.LOAIVANCHUYEN" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.NHANVIEN" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.PHIEUNHAPXUATKHO" Width="1.5" PointX="8.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.SHIPPER" Width="1.5" PointX="6" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.sysdiagram" Width="1.5" PointX="2.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.THONGKE_HETHONG" Width="1.5" PointX="8.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.THONGTINWEBSITE" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.TRANGTHAIDVC" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.VANCHUYEN" Width="1.5" PointX="8.25" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="CongTyVanChuyenModel.FK__CHITIETDV__MaChu__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="CongTyVanChuyenModel.FK__CHITIETDV__MaDVC__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="CongTyVanChuyenModel.FK__DONVANCHU__MaChu__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="CongTyVanChuyenModel.FK__DONVANCHU__Trang__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="CongTyVanChuyenModel.FK__VANCHUYEN__MaDVC__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="CongTyVanChuyenModel.FK__PHIEUNHAP__MaKho__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="CongTyVanChuyenModel.FK__PHIEUNHAP__MaLoa__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="CongTyVanChuyenModel.FK__VANCHUYEN__MaLoa__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="CongTyVanChuyenModel.FK__PHIEUNHAP__MaShi__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="CongTyVanChuyenModel.FK__VANCHUYEN__MaShi__398D8EEE" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,66 @@
+﻿@model CongTyVanChuyen.Model.PHIEUNHAPXUATKHO
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PHIEUNHAPXUATKHO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KHOHANG.TenKho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KHOHANG.TenKho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOAIPHIEU.LoaiPhieu1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOAIPHIEU.LoaiPhieu1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SHIPPER.TenShipper)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SHIPPER.TenShipper)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayNhapXuat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayNhapXuat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GhiChu)
+        </dd>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

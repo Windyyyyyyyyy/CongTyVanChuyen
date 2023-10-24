@@ -1,0 +1,112 @@
+﻿@model IEnumerable<CongTyVanChuyen.Model.PHIEUNHAPXUATKHO>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <strong class="text-danger">Danh sách phiếu nhập xuất</strong>
+                </h3>
+                <div class="card-tools text-right">
+
+                    <a class="btn btn-sm btn-success" href="~/PhieuNhapXuat/Create">Thêm</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr class="bg-primary p-3">
+                        <th>Mã phiếu</th>
+                        <th>Mã loại phiếu</th>
+                        <th>Mã kho</th>
+                        <th>Mã shipper</th>
+                        <th>Ngày nhập xuất</th>
+                        <th>Ghi chú</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaPhieu)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaLoaiPhieu)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaKho)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaShipper)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayNhapXuat)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GhiChu)
+                            </td>
+                            <td>
+                                <i class="far fa-trash-alt">@Html.ActionLink("Xóa", "Delete", new { id = item.MaPhieu })</i>
+                                
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+@*<div class="page-header text-right">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+        <div class="MenuTrang">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+        <style>
+            .MenuTrang li {
+                display: inline;
+            }
+        </style>
+    </div>*@
+@*<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6 text-danger"><strong>QUẢN LÝ KHO HÀNG</strong></div>
+            <div class="col-6 text-right">
+                <a class="btn btn-sm btn-success"><i class="fas fa-plus">THÊM</i></a>
+                <a class="btn btn-sm btn-danger"><i class="fas fa-trash">XÓA</i></a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr class="bg-primary">
+                    <th>Mã kho</th>
+                    <th>Tên kho</th>
+                    <th>Địa chỉ</th>
+                    <th>Tồn kho</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <td>@item.MaKho</td>
+                <td>@item.TenKho</td>
+                <td>@item.DiaChi</td>
+                <td>@item.TonKho</td>
+                <td>
+                    <a class="btn btn-sm btn-danger"><i class="fas fa-trash">XÓA</i></a>
+                </td>
+            }
+
+                </tbody>
+            </table>
+        </div>
+    </div>*@
+
+
+
