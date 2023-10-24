@@ -20,7 +20,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    
 }
 
 .navbar-inverse .navbar-toggle:hover,
@@ -28,3 +28,38 @@ textarea {
     background-color: #777;
     border-color: #fff
 }
+.btn-viettel {
+    color: orangered;
+    background-color: #fff;
+    border-color: orangered;
+}
+.btnAdd {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+btn:hover {
+    color: orangered;
+    background-color: #fff;
+    border-color: orangered;
+}
+.cod {
+    color: #007ad9 !important;
+    font-size: 13px;
+    font-style: italic;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+textarea{
+    overflow: auto;
+    resize: vertical;
+}
+textarea.form-control{
+    height: auto;
+}
+
