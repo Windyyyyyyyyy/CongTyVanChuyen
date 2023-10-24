@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div id="root">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="left-content"></div>
+                    <div class="left-background">
+                        <img />
+                        <div class="content">
+                            <a>
+                                <div class="logo">
+                                    <img />
+                                </div>
+                            </a>
+                            <div class="left-row2"></div>
+                            <i class="left-row3"></i>
+                        </div>
+                    </div>
+                <div class="right-content">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
