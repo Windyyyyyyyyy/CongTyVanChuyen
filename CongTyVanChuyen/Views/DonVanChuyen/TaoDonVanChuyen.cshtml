@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Tạo đơn vận chuyển";
 }
-<form>
+<form action="/DonVanChuyen/ThanhToanCuocPhi" method="post">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 mt-4">
@@ -29,45 +29,45 @@
                         </div>
                     </div>
                     <div class="card-body">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Điện thoại<span class="text-danger">*</span></label>
-                                <div class="col-sm-9">
-                                    <input name="SDT" type="text" class="form-control" id="phoneNumber" placeholder="Nhập số điện thoại người nhận">
-                                </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Điện thoại<span class="text-danger">*</span></label>
+                            <div class="col-sm-9">
+                                <input name="SDT" type="text" class="form-control" id="phoneNumber" placeholder="Nhập số điện thoại người nhận">
                             </div>
-                            <div class="form-group row mt-3">
-                                <label class="col-sm-3 col-form-label">Họ tên<span class="text-danger">*</span></label>
-                                <div class="col-sm-9">
-                                    <input name="TenNguoiNhan" type="text" class="form-control" id="fullName" placeholder="Nhập tên người nhận">
-                                </div>
+                        </div>
+                        <div class="form-group row mt-3">
+                            <label class="col-sm-3 col-form-label">Họ tên<span class="text-danger">*</span></label>
+                            <div class="col-sm-9">
+                                <input name="TenNguoiNhan" type="text" class="form-control" id="fullName" placeholder="Nhập tên người nhận">
                             </div>
-                            <div class="form-group row mt-3">
-                                <label class="col-sm-3 col-form-label">Địa chỉ<span class="text-danger">*</span></label>
-                                <div class="col-sm-9">
-                                    <input name="DiaChi" type="text" class="form-control" id="diaChi" placeholder="Nhập địa chỉ (số nhà/tên đường, phường/xã, quận/huyện, tỉnh/thành...)">
-                                </div>
+                        </div>
+                        <div class="form-group row mt-3">
+                            <label class="col-sm-3 col-form-label">Địa chỉ<span class="text-danger">*</span></label>
+                            <div class="col-sm-9">
+                                <input name="DiaChi" type="text" class="form-control" id="diaChi" placeholder="Nhập địa chỉ (số nhà/tên đường, phường/xã, quận/huyện, tỉnh/thành...)">
                             </div>
-                            <div class="form-group row mt-3">
-                                <label for="staticEmail" class="col-sm-3 col-form-label"></label>
-                                <div class="col-sm-9">
-                                    <div class="row justify-content-between">
-                                        <div class="col-sm-6">
-                                            <input name="ThanhPho" type="text" class="form-control" id="city" placeholder="Tỉnh/Thành phố">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input name="Quan" type="text" class="form-control" id="district" placeholder="Huyện/Quận">
-                                        </div>
+                        </div>
+                        <div class="form-group row mt-3">
+                            <label for="staticEmail" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <div class="row justify-content-between">
+                                    <div class="col-sm-6">
+                                        <input name="ThanhPho" type="text" class="form-control" id="city" placeholder="Tỉnh/Thành phố">
                                     </div>
-                                    <div class="row justify-content-between mt-2">
-                                        <div class="col-sm-6">
-                                            <input name="Phuong" type="text" class="form-control" id="phuong" placeholder="Phường/Xã">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="duong" placeholder="Đường">
-                                        </div>
+                                    <div class="col-sm-6">
+                                        <input name="Quan" type="text" class="form-control" id="district" placeholder="Huyện/Quận">
                                     </div>
                                 </div>
+                                <div class="row justify-content-between mt-2">
+                                    <div class="col-sm-6">
+                                        <input name="Phuong" type="text" class="form-control" id="phuong" placeholder="Phường/Xã">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="duong" placeholder="Đường">
+                                    </div>
+                                </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                                         <label class="col-form-label">Tên hàng<span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <input name="TenHangHoa" type="text" class="form-control" placeholder="Nhập tên hàng hóa">
+                                        <input name="HANGHOAs[0].TenHangHoa" type="text" class="form-control" placeholder="Nhập tên hàng hóa">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -98,13 +98,13 @@
                                     <div class="col-sm-10">
                                         <div class="row mt-2">
                                             <div class="col-sm-4">
-                                                <input name="SoLuong" type="number" class="form-control" placeholder="Nhập số lượng hàng hóa">
+                                                <input name="HANGHOAs[0].SoLuong" type="number" class="form-control" placeholder="Nhập số lượng hàng hóa">
                                             </div>
                                             <div class="col-sm-4">
-                                                <input name="KhoiLuong" type="number" class="form-control khoiLuongInput" placeholder="Nhập khối lượng hàng hóa (gram)">
+                                                <input name="HANGHOAs[0].KhoiLuong" type="number" class="form-control khoiLuongInput" placeholder="Nhập khối lượng hàng hóa (gram)">
                                             </div>
                                             <div class="col-sm-4">
-                                                <input name="GiaTri" type="number" class="form-control giaTriInput" placeholder="Giá trị">
+                                                <input name="HANGHOAs[0].GiaTri" type="number" class="form-control giaTriInput" placeholder="Giá trị">
                                             </div>
                                         </div>
                                     </div>
@@ -128,12 +128,12 @@
                         <div class="flex-column">
                             <label class="fw-bolder">TIỀN THU HỘ</label>
                             <p class="cod"> <i class="fa fa-info-circle"></i> Hình thức thanh toán tiền COD</p>
-                            <input id="tienThuHo" type="number" class="form-control" placeholder="0 ₫">
+                            <input name="TienThuHo" id="tienThuHo" type="number" class="form-control" placeholder="0 ₫">
                             <label class="fw-bolder">GHI CHÚ</label>
-                            <textarea id="ghiChu" class="form-control" placeholder="Nhập ghi chú"></textarea>
+                            <textarea name="GhiChu" id="ghiChu" class="form-control" placeholder="Nhập ghi chú"></textarea>
                             <label class="fw-bolder">TỔNG CƯỚC</label>
                             <p id="shippingCost" class="fs-2 fw-bold">0&nbsp;₫</p>
-                            <input type="number" id="shipCost" >
+                            <input name="TongTienCuoc" type="number" id="shipCost">
                         </div>
                         <div class="mt-4 d-flex justify-content-end gap-2">
                             <button id="submit-button" type="button" class="btn btn-primary">Thanh toán cước phí</button>
@@ -144,6 +144,7 @@
             </div>
         </div>
     </div>
+    <button type="submit">btn</button>
 </form>
 <script src="https://kit.fontawesome.com/ef3275e9a2.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -154,21 +155,18 @@
  
         var listHangHoa = document.querySelector(".list-hanghoa");
 
-    
+        var hangHoaCounter = 1;
         btnAddHangHoa.addEventListener("click", function () {
             event.preventDefault();
             // Tạo một div mới có lớp CSS "hanghoa"
             var newHangHoa = document.createElement("div");
             newHangHoa.className = "hanghoa";
-
-            // Nội dung HTML của div.hanghoa
-            newHangHoa.innerHTML = `
-                        <div class="form-group row">
+            var appendChild = `<div class="form-group row">
                                 <div class="form-group col-sm-2">
                                     <label class="col-form-label">Tên hàng<span class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input name="TenHangHoa" type="text" class="form-control" placeholder="Nhập tên hàng hóa">
+                                    <input name="HANGHOAs[` + hangHoaCounter + `].TenHangHoa" type="text" class="form-control" placeholder="Nhập tên hàng hóa">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -178,78 +176,85 @@
                                 <div class="col-sm-10">
                                     <div class="row mt-2">
                                         <div class="col-sm-4">
-                                            <input name="SoLuong" type="number" class="form-control" placeholder="Nhập số lượng hàng hóa">
+                                            <input name="HANGHOAs[` + hangHoaCounter + `].SoLuong" type="number" class="form-control" placeholder="Nhập số lượng hàng hóa">
                                         </div>
                                         <div class="col-sm-4">
-                                            <input name="KhoiLuong" type="number" class="form-control khoiLuongInput" placeholder="Nhập khối lượng hàng hóa (gram)">
+                                            <input name="HANGHOAs[` + hangHoaCounter + `].KhoiLuong" type="number" class="form-control khoiLuongInput" placeholder="Nhập khối lượng hàng hóa (gram)">
                                         </div>
                                         <div class="col-sm-4">
-                                            <input name="GiaTri" type="number" class="form-control giaTriInput" placeholder="Giá trị">
+                                            <input name="HANGHOAs[` + hangHoaCounter + `].GiaTri" type="number" class="form-control giaTriInput" placeholder="Giá trị">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <hr />
-                `;
+                            <hr />`;
+            console.log(appendChild);
+            // Nội dung HTML của div.hanghoa
+            newHangHoa.innerHTML = appendChild;
 
            
             listHangHoa.appendChild(newHangHoa);
+            hangHoaCounter++;
         });
         $("#cancel").on("click", function (event) {
             event.preventDefault();
             location.reload();
         });
-        $("#submit-button").on("click", function (event) {
-            event.preventDefault();
-            var tenNguoiNhan = $("#fullName").val();
-            var diaChi = $("#diaChi").val();
-            var SDT = $("#phoneNumber").val();
-            var thanhPho = $("#city").val();
-            var quanHuyen = $("#district").val();
-            var phuong = $("#phuong").val();
-            var tienThuHo = $("#tienThuHo").val();
-            var ghiChu = $("#ghiChu").val();
-            var tongCuocPhi = $("#shipCost").val();
-            var hangHoaData = [];
-            $(".hanghoa").each(function (index, element) {
-                var tenHangHoa = $(element).find("input[name='TenHangHoa']").val();
-                var soLuong = $(element).find("input[name='SoLuong']").val();
-                var khoiLuong = $(element).find("input[name='KhoiLuong']").val();
-                var giaTri = $(element).find("input[name='GiaTri']").val();
-                console.log(tenHangHoa, soLuong, khoiLuong, giaTri);
-                // Lấy các giá trị khác tương tự
-                var hangHoa = {
-                    TenHangHoa: tenHangHoa,
-                    SoLuong: soLuong,
-                    KhoiLuong: khoiLuong,
-                    GiaTri: giaTri
-                };
-                hangHoaData.push(hangHoa);
+        //$("#submit-button").on("click", function (event) {
+        //    event.preventDefault();
+        //    var tenNguoiNhan = $("#fullName").val();
+        //    var diaChi = $("#diaChi").val();
+        //    var SDT = $("#phoneNumber").val();
+        //    var thanhPho = $("#city").val();
+        //    var quanHuyen = $("#district").val();
+        //    var phuong = $("#phuong").val();
+        //    var tienThuHo = $("#tienThuHo").val();
+        //    var ghiChu = $("#ghiChu").val();
+        //    var tongCuocPhi = $("#shipCost").val();
+        //    var hangHoaData = [];
+        //    $(".hanghoa").each(function (index, element) {
+        //        var tenHangHoa = $(element).find("input[name='TenHangHoa']").val();
+        //        var soLuong = $(element).find("input[name='SoLuong']").val();
+        //        var khoiLuong = $(element).find("input[name='KhoiLuong']").val();
+        //        var giaTri = $(element).find("input[name='GiaTri']").val();
+        //        console.log(tenHangHoa, soLuong, khoiLuong, giaTri);
+        //        // Lấy các giá trị khác tương tự
+        //        var hangHoa = {
+        //            TenHangHoa: tenHangHoa,
+        //            SoLuong: soLuong,
+        //            KhoiLuong: khoiLuong,
+        //            GiaTri: giaTri
+        //        };
+        //        hangHoaData.push(hangHoa);
                 
-            });
-            var data = {
-                TenNguoiNhan: tenNguoiNhan,
-                DiaChi: diaChi,
-                SDT: SDT,
-                ThanhPho: thanhPho,
-                Quan: quanHuyen,
-                Phuong: phuong,
-                TienThuHo: tienThuHo,
-                GhiChu: ghiChu,
-                TongTienCuoc: tongCuocPhi,
-                HANGHOAs: hangHoaData
-            };
-
-            console.log(JSON.stringify(data));
-            $.ajax({
-                url: '/DonVanChuyen/AddDonVanChuyen',
-                type: 'POST',
-                data: data,
-                success: function () {
-                    alert("success")
-                }
-            });
-        });
+        //    });
+        //    var data = {
+        //        TenNguoiNhan: tenNguoiNhan,
+        //        DiaChi: diaChi,
+        //        SDT: SDT,
+        //        ThanhPho: thanhPho,
+        //        Quan: quanHuyen,
+        //        Phuong: phuong,
+        //        TienThuHo: tienThuHo,
+        //        GhiChu: ghiChu,
+        //        TongTienCuoc: tongCuocPhi,
+        //        HANGHOAs: hangHoaData
+        //    };
+        //    console.log(JSON.stringify(data));
+        //    $.ajax({
+        //        url: '/DonVanChuyen/ThanhToanCuocPhi',
+        //        type: 'POST',
+        //        data: JSON.stringify(data),
+        //        cors: true,
+        //        secure: true,
+        //        dataType: 'jsonp',
+        //        contentType: 'application/json',
+        //        headers: {
+        //            'Access-Control-Allow-Origin': '*',
+        //        },
+        //    });
+            
+        //});
         $(document).on('input', '.khoiLuongInput, .giaTriInput', function () {
             calculateTotals();
         });
