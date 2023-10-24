@@ -15,10 +15,11 @@
     <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
     <link href="/Areas/Admin/Content/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
+
     <!-- page specific plugin styles -->
     <!-- text fonts -->
-    <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
-    <link href="/Areas/Admin/Content/css/fonts.googleapis.com.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+        <link href="/Areas/Admin/Content/css/fonts.googleapis.com.css" rel="stylesheet" />*@
 
     <!-- ace styles -->
     <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
@@ -39,6 +40,7 @@
     <!-- ace settings handler -->
     <script src="assets/js/ace-extra.min.js"></script>
     <script src="/Areas/Admin/Content/js/ace-extra.min.js"></script>
+
 
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
     <!--[if lte IE 8]>
@@ -61,10 +63,10 @@
             </button>
 
             <div class="navbar-header pull-left">
-                <a href="index.html" class="navbar-brand">
+                <a href="@Url.Action("Index","HomeAdmin")" class="navbar-brand">
                     <small>
                         <i class="fa fa-leaf"></i>
-                        Ace Admin
+                        Trang dành cho Admin
                     </small>
                 </a>
             </div>
@@ -73,11 +75,8 @@
                 <ul class="nav ace-nav">
                     <li class="light-blue dropdown-modal">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                            <img class="nav-user-photo" src="/Areas/Admin/Content/images/avatars/user.jpg" alt="Jason's Photo" />
-                            <span class="user-info">
-                                <small>Welcome, Admin</small>
-                            </span>
-
+                            <img class="nav-user-photo" src="/Areas/Admin/Content/images/avatars/user.jpg" alt="Jason's Photo" />                            
+                                Xin chào, Admin                            
                             <i class="ace-icon fa fa-caret-down"></i>
                         </a>
 
@@ -116,7 +115,7 @@
             <ul class="nav nav-list">
                 <li class="">
                     <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-list"></i>
+                        <i class="menu-icon fa fa-user"></i>
                         <span class="menu-text"> Nhân viên </span>
 
                         <b class="arrow fa fa-angle-down"></b>
@@ -126,7 +125,7 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a href="/Areas/Admin/Views/NHANVIENs/Create.cshtml">
+                            <a href="@Url.Action("Create","NHANVIENs")">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Thêm mới nhân viên
                             </a>
@@ -135,25 +134,71 @@
                         </li>
 
                         <li class="">
-                            <a href="jqgrid.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Xóa nhân viên
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="">
-                            <a href="jqgrid.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Sửa thông tin nhân viên
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="">
-                            <a href="/Areas/Admin/Views/NHANVIENs/Index.cshtml">
+                            <a href="@Url.Action("Index","NHANVIENs")">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Thông tin các nhân viên
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-tag"></i>
+                        <span class="menu-text"> Shipper </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="@Url.Action("Create","SHIPPERs")">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Thêm mới nhân viên shipper
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="@Url.Action("Index","SHIPPERs")">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Thông tin các nhân viên shipper
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-user"></i>
+                        <span class="menu-text"> Quản lý chủ cửa hàng </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="@Url.Action("Create","CHUCUAHANGs")">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Thêm mới chủ cửa hàng
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="@Url.Action("Index","CHUCUAHANGs")">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Thông tin các chủ cửa hàng
                             </a>
 
                             <b class="arrow"></b>
@@ -173,45 +218,41 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a href="form-elements.html">
+                            <a href="@Url.Action("Create","DONVANCHUYENs")">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Form Elements
+                                Thêm mới đơn hàng
                             </a>
 
                             <b class="arrow"></b>
                         </li>
 
                         <li class="">
-                            <a href="form-elements-2.html">
+                            <a href="@Url.Action("Index","DONVANCHUYENs")">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Form Elements 2
+                                Thông tin các đơn hàng
                             </a>
 
                             <b class="arrow"></b>
                         </li>
 
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-list"></i>
+                        <span class="menu-text"> Kho hàng </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
                         <li class="">
-                            <a href="form-wizard.html">
+                            <a href="@Url.Action("Index","KHOHANGs")">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Wizard &amp; Validation
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="wysiwyg.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Wysiwyg &amp; Markdown
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="dropzone.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Dropzone File Upload
+                                Thông tin kho hàng
                             </a>
 
                             <b class="arrow"></b>

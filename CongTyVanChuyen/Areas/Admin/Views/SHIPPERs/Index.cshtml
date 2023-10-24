@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CongTyVanChuyen.Models.SHIPPER>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/layout-admin.cshtml";
+}
+
+<h2>Tất cả các nhân viên shipper</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới nhân viên shipper", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenShipper)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CCCD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MatKhau)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenShipper)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgaySinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CCCD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MatKhau)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaShipper }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaShipper }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaShipper })
+        </td>
+    </tr>
+}
+
+</table>

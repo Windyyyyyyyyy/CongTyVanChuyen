@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CongTyVanChuyen.Models.KHOHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/layout-admin.cshtml";
+}
+
+<h2>Thông tin kho hàng</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenKho)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TonKho)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenKho)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TonKho)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaKho }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaKho }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaKho })
+        </td>
+    </tr>
+}
+
+</table>
