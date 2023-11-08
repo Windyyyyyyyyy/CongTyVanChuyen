@@ -1,25 +1,209 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="https://viettelpost.com.vn/wp-content/themes/viettel/images/favicon.ico" type="image/x-icon" />
+    <link href="https://viettelpost.com.vn/wp-content/themes/viettel/assets/fonts/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://viettelpost.com.vn/wp-content/themes/viettel/style.css" rel="stylesheet" type="text/css" />
+    <link href="https://viettelpost.com.vn/wp-content/themes/viettel/assets/css/support_fixed.css" rel="stylesheet" type="text/css" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121177373-3"></script>
+    <meta name="description" content="Viettel Post" />
+    <link rel="canonical" href="https://viettelpost.com.vn/" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Trang chủ - Viettel Post" />
+    <meta property="og:description" content="Viettel Post" />
+    <meta property="og:url" content="https://viettelpost.com.vn/" />
+    <meta property="og:site_name" content="Viettel Post" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content="Viettel Post" />
+    <meta name="twitter:title" content="Trang chủ - Viettel Post" />
+    <link rel='dns-prefetch' href='//viettelpost.com.vn' />
+    <link rel='dns-prefetch' href='//s.w.org' />
+    <link rel="alternate" type="application/rss+xml" title="Dòng thông tin Viettel Post &raquo;" href="https://viettelpost.com.vn/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="Dòng phản hồi Viettel Post &raquo;" href="https://viettelpost.com.vn/comments/feed/" />
+    <link rel='stylesheet' id='contact-form-7-css' href='https://viettelpost.com.vn/wp-content/plugins/contact-form-7/includes/css/styles.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='bodhi-svgs-attachment-css' href='https://viettelpost.com.vn/wp-content/plugins/svg-support/css/svgs-attachment.css' type='text/css' media='all' />
+    <link rel='https://api.w.org/' href='https://viettelpost.com.vn/wp-json/' />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-       
-    </div>
-    <div class="body-content">
-        @RenderBody()
-       
-        <footer>
-        </footer>
-    </div>
+    <header>
+        <div class="top-hd">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 cot1">
+                        <span id="mn">MENU</span>
+                    </div>
+                    <div class="col-md-6 logo">
+                        <a href="/" alt="">
+                            <img style="color:white" src="https://viettelpost.com.vn/wp-content/themes/viettel/images/home/icon1.png">
+                        </a>
+                    </div>
+                    <div class="col-md-3 form-hd col-right">
+                        <form action="/" method="get">
+                            <input type="text" placeholder="Tìm kiếm" name="s">
+                            <button type="submit" value=""><i class="fa fa-search"></i></button>
+                        </form>
+                        <ul class="login">
+                            <li><a href="">Đăng nhập</a></li>
+                            <li><a href="">/</a></li>
+                            <li><a href="">Đăng ký</a></li>
+                        </ul>
+                    </div>
+                </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap.js")
-    @RenderSection("scripts", required: false)
+            </div>
+        </div>
+        <div class="menu">
+            <div class="container">
+                <div class="menu-main-menu-container">
+                    <ul id="menu-main-menu" class="main-mn position-relative">
+                        <li id="menu-item-9498" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-816 current_page_item menu-item-9498"><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                        <li id="menu-item-14785" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-14785">
+                            <a href="@Url.Action("DichVu","Home")">Dịch vụ</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-14788" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14788"><a href="">Chuyển phát tiết kiệm</a></li>
+                                <li id="menu-item-14786" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14786"><a href="">Chuyển phát nhanh</a></li>
+                                <li id="menu-item-14787" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14787"><a href="">Chuyển phát quốc tế</a></li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-9452" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9452"><a href="">Tin tức</a></li>
+                        <li id="menu-item-9452" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9452"><a href="@Url.Action("TraCuuDonHang","Home")">Tra cứu đơn hàng</a></li>
+                        <li id="menu-item-9452" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9452"><a href="">Hỗ trợ khách hàng</a></li>
+                        <li id="menu-item-9452" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9452"><a href="">Tuyển dụng</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="https://viettelpost.com.vn/wp-content/themes/viettel/assets/css/home.css" rel="stylesheet" type="text/css" />
+    <link href="https://viettelpost.com.vn/wp-content/themes/viettel/css/danhmucdichvu.css" rel="stylesheet" type="text/css" />
+    <section id="bn">
+        <div class="owl-carousel owl-theme" data-item="1" data-dot="true" data-autoplay="true">
+            <div class="item">
+                <a href="">
+                    <img src="https://viettelpost.com.vn/wp-content/uploads/2023/10/1920x600-1-1.jpg" alt="" class="lz">
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <img src="https://viettelpost.com.vn/wp-content/uploads/2023/08/banner-web-1.png" alt="" class="lz">
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <img src="https://viettelpost.com.vn/wp-content/uploads/2023/08/web.jpg" alt="" class="lz">
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <img src="https://viettelpost.com.vn/wp-content/uploads/2023/08/banner-web-1.jpg" alt="" class="lz">
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <img src="https://viettelpost.com.vn/wp-content/uploads/2023/05/banner-web-18.jpg" alt="" class="lz">
+                </a>
+            </div>
+        </div>
+    </section>
+    @RenderBody()
+    <section id="s3">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>
+                    Mạng lưới bưu cục <br />
+                    trên 63 tỉnh thành
+                </h4>
+                <a href="">
+                    <img src="https://viettelpost.com.vn/wp-content/themes/viettel/assets/images/app.png" alt="" class="lz">
+                </a>
+                <a href="">
+                    <img src="https://viettelpost.com.vn/wp-content/themes/viettel/assets/images/gg.png" alt="" class="lz">
+                </a>
+            </div>
+            <div class="col-md-8">
+                <ul class="coutdown">
+                    <li>
+                        <h5 class="count-tk">990.870+<span>+</span></h5>
+                        <p>KHÁCH HÀNG TIN DÙNG</p>
+                    </li>
+                    <li>
+                        <h5 class="count-tk">483.870+<span>+</span></h5>
+                        <p>ĐƠN HÀNG ĐANG VẬN CHUYỂN</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <section id="fbot">
+            <div class="container">
+                <div class="row position-relative" style="background: #212D33">
+                    <div class="col-md-7">
+                        <div>
+                            <h3>Công Ty Vận Chuyển Hàng Hóa N10</h3>
+                            <p>N10 là công ty vận chuyển hàng hóa cung cấp dịch vụ chuyển phát nhanh hàng hoá, bưu kiện trong nước, quốc tế tại Việt Nam.</p>
+                            <p><i class="fa fa-paper-plane"></i>Giấy chứng nhận Đăng ký Kinh doanh số: 0104093672 do Phòng ĐKKD Thành phố Hà Nội Cấp lần đầu ngày 03/07/2009</p>
+                            <p>
+                                <i class="fa fa-paper-plane"></i><a style="color: #fff;" href="">Giấy phép bưu chính</a>
+                            </p>
+                            <div>
+                                <p>
+                                    <i class="fa fa-paper-plane"></i>
+                                    <a style="color: #fff;" href="">
+                                        Văn bản xác nhận thông báo hoạt động Bưu chính
+                                    </a>
+                                </p>
+                            </div>
+                        </div><br>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-4">
+                                <h4>Về N10</h4>
+                                <ul>
+                                    <li><a href="/tin-tuc">Tin tức</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-5">
+                                <h4>Hỗ trợ khách hàng</h4>
+                                <p>
+                                    Liên hệ với chúng tôi ngay tại cơ sở Huflit Sư Vạn Hạnh (Quận 10)
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div><!-- row -->
+            </div><!-- container -->
+        </section>
+        <section id="copyight">
+            <div class="container">
+                ©Nhóm 10.Môn Thương Mại Điện Tử
+            </div>
+        </section>
+    </footer>
+
+    <script type="text/javascript" src="https://viettelpost.com.vn/wp-content/themes/viettel/assets/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://viettelpost.com.vn/wp-content/themes/viettel/assets/js/bootstrap.js"></script>
+
+
+    <script type="text/javascript" src="https://viettelpost.com.vn/wp-content/themes/viettel/assets/js/main.js"></script>
+
+    <script type="text/javascript" src="https://viettelpost.com.vn/wp-content/themes/viettel/assets/js/support_fixed.js"></script>
+
+
 </body>
+<link rel='stylesheet' id='whp3663tw-bs4.css-css' href='https://viettelpost.com.vn/wp-content/plugins/wp-security-hardening/modules/inc/assets/css/tw-bs4.css' type='text/css' media='all' />
+<link rel='stylesheet' id='whp6569font-awesome.min.css-css' href='https://viettelpost.com.vn/wp-content/plugins/wp-security-hardening/modules/inc/fa/css/font-awesome.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='whp9382front.css-css' href='https://viettelpost.com.vn/wp-content/plugins/wp-security-hardening/modules/css/front.css' type='text/css' media='all' />
 </html>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+

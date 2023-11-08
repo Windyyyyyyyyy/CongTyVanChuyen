@@ -26,5 +26,13 @@ namespace CongTyVanChuyen.Controllers
 
             return View();
         }
+        public ActionResult DichVu()
+        {
+            return View();
+        }
+        public ActionResult TraCuuDonHang()
+        {
+            return View();
+        }
     }
 }
