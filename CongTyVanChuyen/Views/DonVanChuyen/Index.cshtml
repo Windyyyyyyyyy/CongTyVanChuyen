@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CongTyVanChuyen.Model.DONVANCHUYEN>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper bg-light p-3">
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <strong class="text-danger">Danh đơn vận chuyển</strong>
+                </h3>
+                @*<div class="card-tools text-right">
+
+                    <a class="btn btn-sm btn-success" href="~/KhoHang/Create">Thêm</a>
+                </div>*@
+            </div>
+            <div style="padding-left: 24px;">
+                @using (Html.BeginForm("Index", "DonVanChuyen", FormMethod.Post, new { @class = "navbar-form navbar-right" }))
+                {
+                    <div style="display: flex">
+                        <div class="form-group"><input style="background-color:lightgray; width: 300px;" type="text" name="searchString" placeholder="Tìm kiếm" class="form-control" /></div>
+                        <div class="form-group" style="padding-left: 5px;"><button type="submit" class="btn btn-primary">Search</button></div>
+                    </div>
+                    
+                }
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr class="bg-primary p-3">
+                        <th>Mã đơn vận chuyện</th>
+                        <th>Mã chủ cửa hàng</th>
+                        <th>Trạng thái vận chuyển</th>
+                        <th>Tên người nhận</th>
+                        <th>Địa chỉ</th>
+                        <th>Thành phố</th>
+                        <th>Số điện thoại</th>
+                        <th>Tiền thu hộ</th>
+                        <th>Tổng tiền cước</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaDVC)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaChuCuaHang)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TrangThaiVanChuyen)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenNguoiNhan)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DiaChi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ThanhPho)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SDT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TienThuHo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TongTienCuoc)
+                            </td>
+                            <td>
+                                <i class="fa-regular fa-circle-info">@Html.ActionLink("Chi tiết", "Detail", new { id = item.MaDVC })</i> 
+                            </td>
+                            <td>
+                                <i class="far fa-pen-alt">@Html.ActionLink("Cập nhật trạng thái", "Edit", new { id = item.MaDVC })</i>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+

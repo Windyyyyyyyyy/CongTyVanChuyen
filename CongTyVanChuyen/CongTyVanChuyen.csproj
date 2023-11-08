@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DonVanChuyenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhoHangController.cs" />
     <Compile Include="Controllers\PhieuNhapXuatController.cs" />
@@ -279,6 +280,9 @@
     <Content Include="Views\PhieuNhapXuat\Index.cshtml" />
     <Content Include="Views\PhieuNhapXuat\Delete.cshtml" />
     <Content Include="Views\PhieuNhapXuat\Create.cshtml" />
+    <Content Include="Views\DonVanChuyen\Index.cshtml" />
+    <Content Include="Views\DonVanChuyen\Detail.cshtml" />
+    <Content Include="Views\DonVanChuyen\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

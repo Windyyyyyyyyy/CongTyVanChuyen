@@ -1,0 +1,513 @@
+﻿@model CongTyVanChuyen.Model.DONVANCHUYEN
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #f6f5fb;
+    }
+
+    aside {
+        width: 16rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        position: fixed;
+        top: 1px;
+        bottom: 1px;
+        left: 0;
+        z-index: 3;
+        border-top-right-radius: 35px;
+        border-bottom-right-radius: 35px;
+        transition: width 0.5s;
+        padding: 20px 0px;
+    }
+
+
+    .bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+    }
+
+    header {
+        background-image: linear-gradient(to left,#F35C17,#FF920B);
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        padding-left: calc(16rem + 48px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 48px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: #fff;
+        font-weight: 300;
+    }
+
+
+    .aside-togger {
+        width: 85px;
+    }
+
+    .nav-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 999px;
+        background-color: hsla(0,0%,100%,.15);
+        padding: 4px;
+    }
+
+        .nav-header img {
+            display: inline-block;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(225,225,255,.37);
+            margin-right: 10px;
+        }
+
+        .nav-header i {
+            display: block;
+            margin-top: -5px;
+            color: white;
+            margin-left: 10px;
+            margin-right: 20px;
+        }
+
+    .nav {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .nav-content {
+        display: block;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 12px 20px 0 rgba(0,0,0,.08);
+        border-radius: 6px;
+        z-index: 2;
+        padding: 5px 0px;
+        list-style: none;
+        color: #929baa;
+        right: 0;
+        margin-top: 5px;
+        min-width: 160px;
+    }
+
+        .nav-content li {
+            padding: 6px 16px;
+        }
+
+            .nav-content li:hover {
+                background-color: #f6f7f9;
+            }
+
+    .nav-header:hover .nav-content {
+        display: block;
+    }
+
+    #show {
+        background-color: #FF7B1D;
+        border-radius: 100%;
+        position: absolute;
+        top: 110px;
+        right: -12px;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        cursor: pointer;
+        transition: transform 0.5s;
+    }
+
+    aside > img {
+        display: inline-block;
+        height: 50px;
+        width: 150px;
+        max-width: 200px;
+    }
+
+    .sidebar-logo {
+        padding-top: 20px;
+        cursor: pointer;
+    }
+
+    .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        margin-top: 50px;
+        padding-right: 8px;
+    }
+
+        .sidebar-content .item {
+            width: 100%;
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+            padding: 8px 16px 8px 24px;
+            cursor: pointer;
+            color: #64728c;
+            display: flex;
+            justify-content: center;
+            text-decoration: none;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: Nunito Sans;
+            overflow: hidden;
+        }
+
+            .sidebar-content .item img {
+                display: inline-block;
+                width: 26px;
+                height: 26px;
+                margin-right: 10px;
+            }
+
+            .sidebar-content .item span {
+                text-align: left;
+            }
+
+            .sidebar-content .item:hover {
+                background-color: rgba(255, 123, 29, 0.1);
+            }
+
+    .active {
+        background-image: linear-gradient(to left,#F35C17,#FF920B);
+        color: #fff;
+    }
+
+        .active > span {
+            color: #fff;
+        }
+
+    .sidebar-content .item i {
+        color: black;
+    }
+
+    .none {
+        display: none;
+    }
+
+
+
+    /* CSS nội dung */
+    .add-from-content {
+        width: 100%;
+        display: flex;
+        gap: 10rem;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    .add-form {
+        background-color: #fff;
+        border-radius: 1.2rem;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        flex: 1;
+    }
+
+    form {
+        display: block;
+    }
+
+    .add-form > h3 {
+        width: 100%;
+        font-size: 30px;
+        font-weight: 800;
+        color: #64728C;
+        border-bottom: 1px solid #64728C;
+        padding-bottom: 20px;
+    }
+
+    .add-form .add-form-input {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+
+        .add-form .add-form-input input[type=text], .add-form .add-form-input input[type=number] {
+            border: 1px solid #e8eaef;
+            box-sizing: border-box;
+            font-family: Nunito Sans,sans-serif;
+            color: #64728c;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.5;
+            border-radius: 0.65rem;
+            padding: 0.675rem 0.5rem;
+            width: 100%;
+            min-height: 45px;
+        }
+
+        .add-form .add-form-input input[type=file]::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+
+        .add-form .add-form-input input[type=file]::before {
+            content: 'Chọn ảnh';
+            display: inline-block;
+            background: linear-gradient(top, #f9f9f9, #e3e3e3);
+            border: 1px solid #999;
+            border-radius: 3px;
+            padding: 5px 8px;
+            outline: none;
+            white-space: nowrap;
+            -webkit-user-select: none;
+            cursor: pointer;
+            text-shadow: 1px 1px #fff;
+            font-weight: 700;
+            font-size: 10pt;
+        }
+
+        .add-form .add-form-input input[type=file]:hover::before {
+            border-color: black;
+        }
+
+        .add-form .add-form-input input[type=file]:active::before {
+            background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+        }
+
+    form .des input[type=text] {
+        text-align: top;
+        height: 10rem;
+    }
+
+    textarea {
+        width: 100%;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #fff;
+        font-size: 16px;
+        resize: none;
+    }
+
+    .image-product {
+        width: 80%;
+        border: 1px dotted #64728C;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-product {
+        font-size: 2rem;
+        cursor: pointer;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .add-btn {
+        margin-top: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .add-btn label {
+            font-size: 20px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            font-family: Nunito Sans,sans-serif;
+            font-weight: 600;
+            border: 0;
+            border-radius: 3em;
+            cursor: pointer;
+            display: inline-block;
+            line-height: 1;
+            padding-right: 32px;
+            padding-left: 32px;
+            min-width: 100px;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            color: #fff;
+            background-color: #76bc21;
+        }
+
+    .custom-select {
+        position: relative;
+        font-family: Arial;
+        border-radius: 10px;
+        border: 1px solid #64728C;
+    }
+
+        .custom-select select {
+            display: none; /*hide original SELECT element:*/
+        }
+
+    .select-selected {
+        background-color: #fff;
+    }
+
+        /*style the arrow inside the select element:*/
+        .select-selected:after {
+            position: absolute;
+            content: "";
+            top: 14px;
+            right: 10px;
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            border-color: #fff;
+        }
+
+        /*point the arrow upwards when the select box is open (active):*/
+        .select-selected.select-arrow-active:after {
+            border-color: #fff;
+            top: 7px;
+        }
+
+    /*style the items (options), including the selected item:*/
+    .select-items div, .select-selected {
+        padding: 8px 16px;
+        border: 1px solid transparent;
+        border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+        cursor: pointer;
+        user-select: none;
+        border-radius: 10px;
+    }
+
+    /*style items (options):*/
+    .select-items {
+        position: absolute;
+        background-color: #fff;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 99;
+        border: 1px solid #64728C;
+        border-radius: 10px;
+        max-height: 200px;
+        overflow-y: scroll;
+    }
+
+        .select-items::-webkit-scrollbar {
+            width: 6px;
+            background-color: #F5F5F5;
+        }
+
+    /*hide the items when the select box is closed:*/
+    .select-hide {
+        display: none;
+    }
+
+    .select-items div:hover, .same-as-selected {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .back {
+        margin-top: 0;
+        justify-content: start;
+        align-items: center;
+    }
+
+    /* End css Nội dung */
+    .togger {
+        padding-left: calc(5.2rem + 48px);
+    }
+</style>
+<div id="main" class="content">
+    <!-- Bắt đầu form -->
+    <div class="add-form">
+        <div class="add-btn back">
+            <label><a href="/DonVanChuyen/Index">Quay về</a></label>
+        </div>
+        <h3>Cập nhật trạng thái đơn vận chuyển</h3>
+        <div class="add-from-content">
+            @using (Html.BeginForm("Edit", "DonVanChuyen", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(model => model.MaDVC);
+                <div class="add-form-input">
+                    <label for="">Mã chủ cửa hàng</label>
+                    <input name="MaChuCuaHang" type="text" placeholder="Nhập mã chủ cửa hàng" value="@Model.MaChuCuaHang">
+                </div>
+                <div class="add-form-input">
+                    <label for="">Trạng thái vận chuyển</label>
+                    <input name="Phuong" type="text" placeholder="Nhập tên sản phẩm" value="@Model.TrangThaiVanChuyen">
+
+                </div>
+                <div class="add-form-input">
+                    <label for="">Tên người nhận</label>
+                    <input name="Phuong" type="text" placeholder="Nhập tên sản phẩm" value="@Model.TenNguoiNhan">
+
+                </div>
+                <div class="add-form-input">
+                    <label for="">Địa chỉ</label>
+                    <input name="Phuong" type="text" placeholder="Nhập tên sản phẩm" value="@Model.DiaChi">
+
+                </div>
+                <div class="add-form-input">
+                    <label for="">Thành phố</label>
+                    <input name="Phuong" type="text" placeholder="Nhập tên sản phẩm" value="@Model.ThanhPho">
+
+                </div>
+
+
+                <div class="add-form-input">
+                    <label for="">Quận</label>
+                    <input name="Phuong" type="text" placeholder="Nhập tên sản phẩm" value="@Model.Quan">
+
+                </div>
+                <div class="add-form-input">
+                    <label for="">Phường</label>
+                    <input name="Phuong" type="text" placeholder="Nhập tên sản phẩm" value="@Model.Phuong">
+
+                </div>
+                <div class="add-form-input">
+                    <label for="">SĐT</label>
+                    <input name="SDT" type="text" placeholder="Nhập tên sản phẩm" value="@Model.SDT">
+                </div>
+                <div class="add-form-input">
+                    <label for="">Ghi chú</label>
+                    <input name="GhiChu" type="text" placeholder="Nhập tên sản phẩm" value="@Model.GhiChu">
+                </div>
+                <div class="add-form-input">
+                    <label for="">Tiền thu hộ</label>
+                    <input name="TienThuHo" type="text" placeholder="Nhập tên sản phẩm" value="@Model.TienThuHo">
+                </div>
+                <div class="add-form-input">
+                    <label for="">Tổng cước</label>
+                    <input name="TongTienCuoc" type="text" placeholder="Nhập tên sản phẩm" value="@Model.TongTienCuoc">
+                </div>
+                <input type="submit" id="ipSm" style=" visibility: hidden;">
+            }
+
+        </div>
+        <div class="add-btn">
+            <label for="ipSm">Cập nhật</label>
+        </div>
+
+    </div>
+    <!-- Kết thúc form -->
+    </div>
