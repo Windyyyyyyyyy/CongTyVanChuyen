@@ -29,6 +29,10 @@
         <AssociationConnector Association="CongTyVanChuyenModel.FK__VANCHUYEN__MaLoa__3A81B327" ManuallyRouted="false" />
         <AssociationConnector Association="CongTyVanChuyenModel.FK__PHIEUNHAP__MaShi__4316F928" ManuallyRouted="false" />
         <AssociationConnector Association="CongTyVanChuyenModel.FK__VANCHUYEN__MaShi__398D8EEE" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.DVC_VOUCHER" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="CongTyVanChuyenModel.VOUCHER" Width="1.5" PointX="6" PointY="18.125" />
+        <AssociationConnector Association="CongTyVanChuyenModel.FK__DVC_VOUCH__maDVC__5FB337D6" />
+        <AssociationConnector Association="CongTyVanChuyenModel.FK__DVC_VOUCH__maVou__5EBF139D" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

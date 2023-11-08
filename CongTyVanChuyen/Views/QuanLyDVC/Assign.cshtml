@@ -1,0 +1,104 @@
+﻿@model CongTyVanChuyen.Models.DONVANCHUYEN
+
+@{
+    ViewBag.Title = "Assign";
+    IEnumerable<CongTyVanChuyen.Models.HANGHOA> hanghoas = ViewBag.hanghoa;
+    //IEnumerable<CongTyVanChuyen.Models.SHIPPER> shippers = ViewBag.Shipper;
+}
+
+<style>
+    .gradient-custom {
+        /* fallback for old browsers */
+        background: #F1F6F9;
+    }
+</style>
+<section class="h-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-10 col-xl-8">
+                <div class="card" style="border-radius: 10px;">
+                    <div class="card-header px-4 py-5">
+                        <h5 class="text-muted mb-0">ĐƠN VẬN CHUYỂN <span style="color: #a8729a;">Ten</span>!</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <p class="lead fw-normal mb-0" style="color: #a8729a;">Thông tin hàng hóa</p>
+                        </div>
+
+                        @foreach (var item in hanghoas)
+                        {
+
+                            <div class="card shadow-0 border mb-4">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0">Tên hàng hóa: @item.TenHangHoa</p>
+                                        </div>
+                                        <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0 small">Số lượng: @item.SoLuong</p>
+                                        </div>
+                                        <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0 small">Dung lượng: @item.KhoiLuong</p>
+                                        </div>
+                                        <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0 small">Giá trị: @string.Format("{0:#,##0} VNĐ", item.GiaTri)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                        <div class="d-flex justify-content-between pt-2">
+                            <p class="fw-bold mb-0">Thông tin đơn hàng</p>
+                        </div>
+
+                        <div class="d-flex justify-content-between pt-2">
+                            <p class="text-muted mb-0"><span class="fw-bold me-2">Mã đơn vận chuyển</span> : @Model.MaDVC</p>
+                            <p class="text-muted mb-0"><span class="fw-bold me-2">Trạng thái</span> : @Model.TRANGTHAIDVC.TrangThai</p>
+                        </div>
+
+                        <div class="d-flex justify-content-between pt-2">
+                            <p class="text-muted mb-0"><span class="fw-bold me-2">Địa chỉ giao hàng</span> : @Model.DiaChi, @Model.Phuong, @Model.Quan, @Model.ThanhPho</p>
+                        </div>
+
+                        <div class="d-flex justify-content-between pt-2">
+                            <p class="text-muted mb-0"><span class="fw-bold me-2">Số điện thoại người nhận</span> : @Model.SDT </p>
+                            <p class="text-muted mb-0"><span class="fw-bold me-2">Tên người nhận</span> : @Model.TenNguoiNhan </p>
+                        </div>
+                        <div class="d-flex justify-content-between pt-2">
+
+                            <p class="text-muted mb-0"><span class="fw-bold me-2">Ghi chú</span> : @Model.GhiChu  </p>
+                            <p class="text-muted mb-0"><span class="fw-bold me-2">Tổng tiền cước</span> : @Model.TongTienCuoc  </p>
+
+                        </div>
+                        <hr />
+                        <div class="d-flex justify-content-between pt-2">
+                            <p class="fw-bold mb-0">Thông tin lấy hàng</p>
+                        </div>
+                        <div class="d-flex align-content-center pt-2">
+                            <p class="text-muted mb-2 ">
+                                <span class="fw-bold me-2 mb-1">Nhân viên lấy hàng</span>
+                            </p>
+                        </div>
+                        <div class="d-flex align-content-center pt-2">
+                            @using (Html.BeginForm("Assign", "QuanLyDVC", FormMethod.Post, new { id = "myForm" }))
+                            {
+                                @Html.DropDownList("Shipper", null, null, htmlAttributes: new { @class = "form-control" })
+                                <input name="maDVC" type="hidden" value="@Model.MaDVC" />
+                                <button type="submit" class="btn btn-success mt-2">Assign</button>
+
+                            }
+                        </div>    
+                    </div>
+                    @*<div class="card-footer border-0 px-4 py-5"
+                         style="background-color: #83AFA6; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                        <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">
+                            Tiền thu hộ: <span class="h2 mb-0 ms-2">@string.Format("{0:#,##0} VNĐ", Model.TienThuHo)</span>
+                        </h5>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

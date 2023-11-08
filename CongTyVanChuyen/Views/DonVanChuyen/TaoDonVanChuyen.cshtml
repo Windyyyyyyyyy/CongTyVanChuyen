@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Tạo đơn vận chuyển";
 }
+
 <form action="/DonVanChuyen/ThanhToanCuocPhi" method="post">
     <div class="container">
         <div class="row">
@@ -70,7 +71,30 @@
                         </div>
                     </div>
                 </div>
+                @*Voucher*@
+                <div class="card mt-2">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between">
+                            <span class="fw-bold">VOUCHER</span>
+
+                        </div>
+                    </div>
+                    <div class="card-body mt-2">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">KHUYẾN MẠI</label>
+                            <div class="col-sm-9 input-with-icon d-flex">
+                                <input name="code" type="text" class="form-control" id="voucherCode" placeholder="Nhập mã khuyến mại">
+                                <div class="d-flex justify-content-between align-items-center p-2 mt-1">
+                                    <p id="motakhuyenmai" class="m-0"></p>
+                                    <i id="iconkhuyenmai" class="" style=" color: #0ee112;"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            @*hang hoa*@
             <div class="col-lg-6 mt-4">
                 <div class="card">
                     <div class="card-header">
@@ -81,8 +105,9 @@
                     </div>
                     <div class="card-body">
                         <div class="list-hanghoa">
-                            <div class="hanghoa">
+                            <div class="hanghoa" data-index="0">
                                 <hr />
+
                                 <div class="form-group row">
                                     <div class="form-group col-sm-2">
                                         <label class="col-form-label">Tên hàng<span class="text-danger">*</span></label>
@@ -91,6 +116,7 @@
                                         <input name="HANGHOAs[0].TenHangHoa" type="text" class="form-control" placeholder="Nhập tên hàng hóa">
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <div class="col-sm-2">
 
@@ -109,6 +135,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <hr />
                             </div>
                         </div>
@@ -133,10 +160,15 @@
                             <textarea name="GhiChu" id="ghiChu" class="form-control" placeholder="Nhập ghi chú"></textarea>
                             <label class="fw-bolder">TỔNG CƯỚC</label>
                             <p id="shippingCost" class="fs-2 fw-bold">0&nbsp;₫</p>
-                            <input name="TongTienCuoc" type="number" id="shipCost">
+                            <div class="d-flex align-items-center">
+                                <p id="khuyenMaiText"></p>
+                                <p id="giamGia" style="color: green"></p>
+                            </div>
+
+                            <input name="TongTienCuoc" type="hidden" id="shipCost">
                         </div>
                         <div class="mt-4 d-flex justify-content-end gap-2">
-                            <button id="submit-button" type="button" class="btn btn-primary">Thanh toán cước phí</button>
+                            <button id="submit-button" type="submit" class="btn btn-primary">Thanh toán cước phí</button>
                             <button id="cancel" type="button" class="btn btn-danger">Làm mới</button>
                         </div>
                     </div>
@@ -144,24 +176,75 @@
             </div>
         </div>
     </div>
-    <button type="submit">btn</button>
 </form>
+
+<!--Modal success-->
+<div class="modal fade" id="myModal-Success">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Thông báo hệ thống</h3>
+            </div>
+            <div class="modal-body">
+                <h4 class="modalcontent"></h4>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal" onclick="CloseModalSuccess()">Đóng</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <script src="https://kit.fontawesome.com/ef3275e9a2.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
 <script>
+    function Show() {
+        $("#myModal-Success").modal("show");
+    }
+    function CloseModalSuccess() {
+        $("#myModal-Success").modal("hide");
+    }
+    function OpenSuccessModal(strMesssage) {
+        document.getElementsByClassName("modalcontent")[0].innerHTML = strMesssage;
+        $("myModal-Success").modal("show");
+    }
     $(document).ready(function () {
-
+        var msg = "@ViewBag.Message";
+        if (msg) {
+            OpenSuccessModal(msg);
+            Show();
+        }
+            
+    });
+    $(document).ready(function () {
+        var khuyenMai = {
+            phanTramGiam: 0,
+            moTa: "",
+            toiDa: 0,
+        }
+        var khuyenMaiText = document.querySelector("#khuyenMaiText");
+        var motakhuyenmai = document.querySelector("#motakhuyenmai");
+        var iconkhuyenmai = document.querySelector("#iconkhuyenmai");
+        var giamGiaText = document.querySelector("#giamGia");
         var btnAddHangHoa = document.querySelector(".btn-viettel");
- 
+
         var listHangHoa = document.querySelector(".list-hanghoa");
 
         var hangHoaCounter = 1;
+
         btnAddHangHoa.addEventListener("click", function () {
             event.preventDefault();
             // Tạo một div mới có lớp CSS "hanghoa"
             var newHangHoa = document.createElement("div");
             newHangHoa.className = "hanghoa";
-            var appendChild = `<div class="form-group row">
+            newHangHoa.dataset.index = hangHoaCounter;
+            var appendChild = `<div class="d-flex mb-2"><button class="btn btn-secondary ms-auto btn-trash" ><i class="fa-solid fa-trash ms-auto"></i></button></div>
+                                <div class="form-group row">
                                 <div class="form-group col-sm-2">
                                     <label class="col-form-label">Tên hàng<span class="text-danger">*</span></label>
                                 </div>
@@ -188,77 +271,26 @@
                                 </div>
                             </div>
                             <hr />`;
-            console.log(appendChild);
+
             // Nội dung HTML của div.hanghoa
             newHangHoa.innerHTML = appendChild;
 
-           
+
             listHangHoa.appendChild(newHangHoa);
             hangHoaCounter++;
+
+
         });
+
         $("#cancel").on("click", function (event) {
             event.preventDefault();
             location.reload();
         });
-        //$("#submit-button").on("click", function (event) {
-        //    event.preventDefault();
-        //    var tenNguoiNhan = $("#fullName").val();
-        //    var diaChi = $("#diaChi").val();
-        //    var SDT = $("#phoneNumber").val();
-        //    var thanhPho = $("#city").val();
-        //    var quanHuyen = $("#district").val();
-        //    var phuong = $("#phuong").val();
-        //    var tienThuHo = $("#tienThuHo").val();
-        //    var ghiChu = $("#ghiChu").val();
-        //    var tongCuocPhi = $("#shipCost").val();
-        //    var hangHoaData = [];
-        //    $(".hanghoa").each(function (index, element) {
-        //        var tenHangHoa = $(element).find("input[name='TenHangHoa']").val();
-        //        var soLuong = $(element).find("input[name='SoLuong']").val();
-        //        var khoiLuong = $(element).find("input[name='KhoiLuong']").val();
-        //        var giaTri = $(element).find("input[name='GiaTri']").val();
-        //        console.log(tenHangHoa, soLuong, khoiLuong, giaTri);
-        //        // Lấy các giá trị khác tương tự
-        //        var hangHoa = {
-        //            TenHangHoa: tenHangHoa,
-        //            SoLuong: soLuong,
-        //            KhoiLuong: khoiLuong,
-        //            GiaTri: giaTri
-        //        };
-        //        hangHoaData.push(hangHoa);
-                
-        //    });
-        //    var data = {
-        //        TenNguoiNhan: tenNguoiNhan,
-        //        DiaChi: diaChi,
-        //        SDT: SDT,
-        //        ThanhPho: thanhPho,
-        //        Quan: quanHuyen,
-        //        Phuong: phuong,
-        //        TienThuHo: tienThuHo,
-        //        GhiChu: ghiChu,
-        //        TongTienCuoc: tongCuocPhi,
-        //        HANGHOAs: hangHoaData
-        //    };
-        //    console.log(JSON.stringify(data));
-        //    $.ajax({
-        //        url: '/DonVanChuyen/ThanhToanCuocPhi',
-        //        type: 'POST',
-        //        data: JSON.stringify(data),
-        //        cors: true,
-        //        secure: true,
-        //        dataType: 'jsonp',
-        //        contentType: 'application/json',
-        //        headers: {
-        //            'Access-Control-Allow-Origin': '*',
-        //        },
-        //    });
-            
-        //});
+
         $(document).on('input', '.khoiLuongInput, .giaTriInput', function () {
             calculateTotals();
         });
-        const ratePerGram = 0.5; 
+        const ratePerGram = 0.5;
         const ratePerValue = 0.02;
         function calculateTotals() {
             var totalKhoiLuong = 0;
@@ -274,12 +306,101 @@
             var formattedTotalGiaTri = totalGiaTri.toLocaleString();
             var formattedTotalKhoiLuong = totalKhoiLuong.toLocaleString();
             var formattedShippingCost = (totalGiaTri * ratePerValue) + (totalKhoiLuong * ratePerGram);
+            var giamGia = formattedShippingCost * khuyenMai.phanTramGiam;
+
+            if (giamGia > khuyenMai.toiDa) {
+                giamGia = khuyenMai.toiDa;
+                console.log("giam > toi da" + giamGia)
+            }
+            formattedShippingCost -= giamGia;
+            console.log("giam < toi da" + giamGia)
+            if (giamGia > 0) {
+                khuyenMaiText.textContent = "Tiết kiệm: ";
+                giamGiaText.textContent = giamGia.toLocaleString() + " đ"
+            } else {
+                khuyenMaiText.textContent = "";
+                giamGiaText.textContent = "";
+            }
             $("#shipCost").val(formattedShippingCost);
             var formattedShippingCost = formattedShippingCost.toLocaleString();
             $("#tongKhoiLuong").text(formattedTotalKhoiLuong + " g");
             $("#tongGiaTri").text(formattedTotalGiaTri + " ₫");
             $("#shippingCost").text(formattedShippingCost + " ₫");
         }
+
+        //voucher
+        $('#voucherCode').on('input', function () {
+            var voucherCode = $(this).val();
+            console.log(voucherCode);
+            $.ajax({
+                url: '/DonVanChuyen/getVoucher',
+                type: 'GET',
+                data: { voucher: voucherCode },
+                success: function (response) {
+                    console.log(JSON.stringify(response))
+                    khuyenMai.phanTramGiam = response.phanTram; // Lấy giá trị từ response
+                    khuyenMai.moTa = response.moTa; // Lấy giá trị từ response
+                    khuyenMai.toiDa = response.toiDa; // Lấy giá trị từ response
+
+                    motakhuyenmai.textContent = khuyenMai.moTa;
+                    iconkhuyenmai.style.color = "#0ee112"
+                    iconkhuyenmai.classList.remove("fa-xmark");
+                    iconkhuyenmai.classList.add("fa-solid");
+                    iconkhuyenmai.classList.add("fa-check");
+                    calculateTotals();
+
+                },
+                error: function (error) {
+                    console.log(error);
+                    khuyenMai.phanTramGiam = 0;
+                    khuyenMai.moTa = "";
+                    khuyenMai.toiDa = 0;
+                    motakhuyenmai.textContent = "Mã khuyến mại không tồn tại";
+                    iconkhuyenmai.classList.remove("fa-check");
+                    iconkhuyenmai.classList.add("fa-xmark");
+                    iconkhuyenmai.style.color = "#da0b0b";
+                    calculateTotals()
+                }
+            });
+        });
+        function findParentByClass(element, className) {
+            while (element && !element.classList.contains(className)) {
+                element = element.parentElement;
+            }
+            return element;
+        }
+        $(document).on("click", ".btn-trash", function (event) {
+            event.preventDefault();
+
+            var parentElement = findParentByClass(this.parentElement, "hanghoa");
+
+            if (parentElement) {
+                parentElement.remove();
+
+                calculateTotals();
+
+                var remainingHangHoas = document.querySelectorAll(".hanghoa");
+                remainingHangHoas.forEach(function (hangHoa, index) {
+                    // Lấy chỉ mục mới
+                    var newIndex = index;
+
+                    // Cập nhật thuộc tính data-index
+                    hangHoa.setAttribute("data-index", newIndex);
+
+                    // Cập nhật tên của các trường input bên trong mục hàng hóa
+                    var inputFields = hangHoa.querySelectorAll("input");
+                    inputFields.forEach(function (input) {
+                        var currentName = input.getAttribute("name");
+                        var newName = currentName.replace(/HANGHOAs\[\d+\]/, `HANGHOAs[${newIndex}]`);
+                        input.setAttribute("name", newName);
+                    });
+                });
+
+                // Cập nhật chỉ mục cho các mục hàng hóa còn lại trong danh sách
+                hangHoaCounter = remainingHangHoas.length;
+            }
+        });
     });
+
 </script>
 

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CongTyVanChuyen.Models.VANCHUYEN>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container py-5">
+    <div class="row text-center text-white mb-5">
+        <div class="col-lg-7 mx-auto">
+            <h1 class="display-4">Danh sách vận chuyển</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- List group-->
+            
+            <ul class="list-group shadow">
+                <!-- list group item-->
+                @foreach (var item in Model)
+                {
+                    
+                    <li class="list-group-item">
+                        <!-- Custom content-->
+                        <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                            <div class="media-body order-2 order-lg-1">
+                                <h5 class="mt-0 font-weight-bold mb-2">@Html.ActionLink(@item.DONVANCHUYEN.TenNguoiNhan, "Details", new {id = item.id})</h5>
+                                <p class="font-italic text-muted mb-0 small">@item.DONVANCHUYEN.getDiaChi()</p>
+                                <div class="d-flex align-items-center justify-content-between mt-1">
+                                    <h6 class="font-weight-bold my-2">@string.Format("{0:#,##0} VNĐ", item.DONVANCHUYEN.TienThuHo)</h6>
+                                    <ul class="list-inline small">
+                                        <li class="list-inline-item m-0">@item.DONVANCHUYEN.SDT @item.id</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> <!-- End -->
+                    </li>
+                    <!-- End -->
+                }
+            </ul> <!-- End -->
+        </div>
+    </div>
+</div>

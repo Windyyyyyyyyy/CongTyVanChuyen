@@ -62,4 +62,11 @@ textarea{
 textarea.form-control{
     height: auto;
 }
+.input-with-icon {
+    display: flex;
+    flex-direction: column;
+}
+#clickableAwesomeFont {
+    cursor: pointer
+}
 

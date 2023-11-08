@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
@@ -16,8 +17,29 @@ namespace CongTyVanChuyen.Controllers
     {
         // GET: DonVanChuyen
         CongTyVanChuyenEntities db = new CongTyVanChuyenEntities();
+      
+        public JsonResult getVoucher(string voucher)
+        {
+            var voucherObject = db.VOUCHERs.FirstOrDefault(v => v.code == voucher && v.isActive == true && v.SoLuong > 0);
+            if (voucher != null)
+            {
+                return Json(voucherObject, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                // Trả về JSON không có dữ liệu nếu không tìm thấy voucher
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         public ActionResult TaoDonVanChuyen()
         {
+            string msg = "";
+            if (TempData["message"] != null)
+            {
+                msg = TempData["message"].ToString();
+                ViewBag.Message = msg;
+            }
+            
             return View();
         }
         [HttpPost]
@@ -112,21 +134,24 @@ namespace CongTyVanChuyen.Controllers
                 string vnp_SecureHash = Request.QueryString["vnp_SecureHash"]; //hash của dữ liệu trả về
 
                 bool checkSignature = pay.ValidateSignature(vnp_SecureHash, hashSecret); //check chữ ký đúng hay không?
-
+                string responseMessage;
                 if (checkSignature)
                 {
                     if (vnp_ResponseCode == "00")
                     {
                         //Thanh toán thành công
-                        ThanhCong(orderId);
-                        ViewBag.Message = "Thanh toán thành công hóa đơn " + orderId + " | Mã giao dịch: " + vnpayTranId;
+                        ThanhCong();
+                        responseMessage = "Thanh toán thành công hóa đơn " + orderId + " | Mã giao dịch: " + vnpayTranId;
+                        TempData["message"] = responseMessage;
 
                     }
                     else
                     {
                         //Thanh toán không thành công. Mã lỗi: vnp_ResponseCode
-                        //ThatBai(orderId);
-                        ViewBag.Message = "Có lỗi xảy ra trong quá trình xử lý hóa đơn " + orderId + " | Mã giao dịch: " + vnpayTranId + " | Mã lỗi: " + vnp_ResponseCode;
+
+                        responseMessage = "Có lỗi xảy ra trong quá trình xử lý đơn hàng" + " | Mã giao dịch: " + vnpayTranId + " | Mã lỗi: " + vnp_ResponseCode;
+                        TempData["message"] = responseMessage;
+                        return RedirectToAction("TaoDonVanChuyen");
                     }
                 }
                 else
@@ -134,18 +159,51 @@ namespace CongTyVanChuyen.Controllers
                     ViewBag.Message = "Có lỗi xảy ra trong quá trình xử lý";
                 }
             }
+            
+            return RedirectToAction("TaoDonVanChuyen");
+        }
 
-            return RedirectToAction("ShowCart", "ShoppingCart");
-        }
-        public void ThanhCong(string orderId)
+        private void ThatBai()
         {
-            DONVANCHUYEN dvc = Session["DonVanChuyen"] as DONVANCHUYEN;
-            dvc.MaDVC = "01";
-            dvc.MaChuCuaHang = "01";
-            dvc.TrangThaiVanChuyen = 1;
-            db.DONVANCHUYENs.Add(dvc);
-            db.SaveChanges();
+            throw new NotImplementedException();
         }
+
+        public void ThanhCong()
+        {
+            try
+            {
+                DONVANCHUYEN dvc = Session["DonVanChuyen"] as DONVANCHUYEN;
+                dvc.MaDVC = GenerateMaDVC();
+                dvc.MaChuCuaHang = "01";
+                dvc.TrangThaiVanChuyen = 1;
+                dvc.NgayTao = DateTime.Now;
+                db.DONVANCHUYENs.Add(dvc);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+        }
+        public string GenerateMaDVC()
+        {
+            const string allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            const int maDVCLength = 20;
+            var random = new Random();
+            var maDVC = new string(
+                Enumerable.Repeat(allowedChars, maDVCLength)
+                    .Select(s => s[random.Next(s.Length)])
+                    .ToArray()
+            );
+            if (char.IsDigit(maDVC[0]))
+            {
+                maDVC = (char)('A' + random.Next(26)) + maDVC.Substring(1);
+            }
+
+            return maDVC;
+        }
+
 
     }
 }

@@ -39,5 +39,7 @@ namespace CongTyVanChuyen.Models
         public virtual DbSet<THONGTINWEBSITE> THONGTINWEBSITEs { get; set; }
         public virtual DbSet<TRANGTHAIDVC> TRANGTHAIDVCs { get; set; }
         public virtual DbSet<VANCHUYEN> VANCHUYENs { get; set; }
+        public virtual DbSet<DVC_VOUCHER> DVC_VOUCHER { get; set; }
+        public virtual DbSet<VOUCHER> VOUCHERs { get; set; }
     }
 }

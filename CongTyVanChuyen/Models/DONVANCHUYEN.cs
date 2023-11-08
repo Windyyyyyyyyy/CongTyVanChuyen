@@ -19,6 +19,7 @@ namespace CongTyVanChuyen.Models
         {
             this.HANGHOAs = new HashSet<HANGHOA>();
             this.VANCHUYENs = new HashSet<VANCHUYEN>();
+            this.DVC_VOUCHER = new HashSet<DVC_VOUCHER>();
         }
     
         public string MaDVC { get; set; }
@@ -32,13 +33,21 @@ namespace CongTyVanChuyen.Models
         public string SDT { get; set; }
         public string GhiChu { get; set; }
         public double TienThuHo { get; set; }
-        public double TongTienCuoc { get; set; } 
-        
+        public double TongTienCuoc { get; set; }
+        public Nullable<System.DateTime> NgayTao { get; set; }
+    
         public virtual CHUCUAHANG CHUCUAHANG { get; set; }
         public virtual TRANGTHAIDVC TRANGTHAIDVC { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HANGHOA> HANGHOAs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VANCHUYEN> VANCHUYENs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DVC_VOUCHER> DVC_VOUCHER { get; set; }
+        public string getDiaChi()
+        {
+            string diachi = "" + DiaChi + ", " + Quan + ", " + Phuong + ", " + ThanhPho;
+            return diachi;
+        }
     }
 }

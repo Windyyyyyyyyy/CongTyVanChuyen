@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CongTyVanChuyenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CongTyVanChuyenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CHUCUAHANG">
           <Key>
             <PropertyRef Name="MaCCH" />
@@ -36,6 +36,16 @@
           <Property Name="GhiChu" Type="nvarchar(max)" />
           <Property Name="TienThuHo" Type="float" Nullable="false" />
           <Property Name="TongTienCuoc" Type="float" Nullable="false" />
+          <Property Name="NgayTao" Type="date" />
+        </EntityType>
+        <EntityType Name="DVC_VOUCHER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="maVoucher" Type="int" />
+          <Property Name="maDVC" Type="varchar" MaxLength="20" />
+          <Property Name="ngaySuDung" Type="date" />
         </EntityType>
         <EntityType Name="HANGHOA">
           <Key>
@@ -151,6 +161,18 @@
           <Property Name="MaLoaiVC" Type="int" />
           <Property Name="NgayGio" Type="datetime" />
         </EntityType>
+        <EntityType Name="VOUCHER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="50" />
+          <Property Name="moTa" Type="nvarchar" MaxLength="200" />
+          <Property Name="phanTram" Type="float" />
+          <Property Name="toiDa" Type="float" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
         <Association Name="FK__DONVANCHU__MaChu__2A4B4B5E">
           <End Role="CHUCUAHANG" Type="Self.CHUCUAHANG" Multiplicity="0..1" />
           <End Role="DONVANCHUYEN" Type="Self.DONVANCHUYEN" Multiplicity="*" />
@@ -172,6 +194,30 @@
             </Principal>
             <Dependent Role="DONVANCHUYEN">
               <PropertyRef Name="TrangThaiVanChuyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DVC_VOUCH__maDVC__5FB337D6">
+          <End Role="DONVANCHUYEN" Type="Self.DONVANCHUYEN" Multiplicity="0..1" />
+          <End Role="DVC_VOUCHER" Type="Self.DVC_VOUCHER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONVANCHUYEN">
+              <PropertyRef Name="MaDVC" />
+            </Principal>
+            <Dependent Role="DVC_VOUCHER">
+              <PropertyRef Name="maDVC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DVC_VOUCH__maVou__5EBF139D">
+          <End Role="VOUCHER" Type="Self.VOUCHER" Multiplicity="0..1" />
+          <End Role="DVC_VOUCHER" Type="Self.DVC_VOUCHER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VOUCHER">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DVC_VOUCHER">
+              <PropertyRef Name="maVoucher" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -274,6 +320,7 @@
         <EntityContainer Name="CongTyVanChuyenModelStoreContainer">
           <EntitySet Name="CHUCUAHANG" EntityType="Self.CHUCUAHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DONVANCHUYEN" EntityType="Self.DONVANCHUYEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DVC_VOUCHER" EntityType="Self.DVC_VOUCHER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HANGHOA" EntityType="Self.HANGHOA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHOHANG" EntityType="Self.KHOHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOAIPHIEU" EntityType="Self.LOAIPHIEU" Schema="dbo" store:Type="Tables" />
@@ -286,6 +333,7 @@
           <EntitySet Name="THONGTINWEBSITE" EntityType="Self.THONGTINWEBSITE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRANGTHAIDVC" EntityType="Self.TRANGTHAIDVC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VANCHUYEN" EntityType="Self.VANCHUYEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VOUCHER" EntityType="Self.VOUCHER" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__DONVANCHU__MaChu__2A4B4B5E" Association="Self.FK__DONVANCHU__MaChu__2A4B4B5E">
             <End Role="CHUCUAHANG" EntitySet="CHUCUAHANG" />
             <End Role="DONVANCHUYEN" EntitySet="DONVANCHUYEN" />
@@ -293,6 +341,14 @@
           <AssociationSet Name="FK__DONVANCHU__Trang__2B3F6F97" Association="Self.FK__DONVANCHU__Trang__2B3F6F97">
             <End Role="TRANGTHAIDVC" EntitySet="TRANGTHAIDVC" />
             <End Role="DONVANCHUYEN" EntitySet="DONVANCHUYEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DVC_VOUCH__maDVC__5FB337D6" Association="Self.FK__DVC_VOUCH__maDVC__5FB337D6">
+            <End Role="DONVANCHUYEN" EntitySet="DONVANCHUYEN" />
+            <End Role="DVC_VOUCHER" EntitySet="DVC_VOUCHER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DVC_VOUCH__maVou__5EBF139D" Association="Self.FK__DVC_VOUCH__maVou__5EBF139D">
+            <End Role="VOUCHER" EntitySet="VOUCHER" />
+            <End Role="DVC_VOUCHER" EntitySet="DVC_VOUCHER" />
           </AssociationSet>
           <AssociationSet Name="FK__HANGHOA__MaChuCu__2F10007B" Association="Self.FK__HANGHOA__MaChuCu__2F10007B">
             <End Role="CHUCUAHANG" EntitySet="CHUCUAHANG" />
@@ -327,8 +383,7 @@
             <End Role="VANCHUYEN" EntitySet="VANCHUYEN" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CongTyVanChuyenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -369,6 +424,8 @@
           <NavigationProperty Name="TRANGTHAIDVC" Relationship="Self.FK__DONVANCHU__Trang__2B3F6F97" FromRole="DONVANCHUYEN" ToRole="TRANGTHAIDVC" />
           <NavigationProperty Name="HANGHOAs" Relationship="Self.FK__HANGHOA__MaDVC__300424B4" FromRole="DONVANCHUYEN" ToRole="HANGHOA" />
           <NavigationProperty Name="VANCHUYENs" Relationship="Self.FK__VANCHUYEN__MaDVC__38996AB5" FromRole="DONVANCHUYEN" ToRole="VANCHUYEN" />
+          <Property Name="NgayTao" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DVC_VOUCHER" Relationship="CongTyVanChuyenModel.FK__DVC_VOUCH__maDVC__5FB337D6" FromRole="DONVANCHUYEN" ToRole="DVC_VOUCHER" />
         </EntityType>
         <EntityType Name="HANGHOA">
           <Key>
@@ -673,7 +730,65 @@
             <End Role="SHIPPER" EntitySet="SHIPPERs" />
             <End Role="VANCHUYEN" EntitySet="VANCHUYENs" />
           </AssociationSet>
+          <EntitySet Name="DVC_VOUCHER" EntityType="CongTyVanChuyenModel.DVC_VOUCHER" />
+          <EntitySet Name="VOUCHERs" EntityType="CongTyVanChuyenModel.VOUCHER" />
+          <AssociationSet Name="FK__DVC_VOUCH__maDVC__5FB337D6" Association="CongTyVanChuyenModel.FK__DVC_VOUCH__maDVC__5FB337D6">
+            <End Role="DONVANCHUYEN" EntitySet="DONVANCHUYENs" />
+            <End Role="DVC_VOUCHER" EntitySet="DVC_VOUCHER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DVC_VOUCH__maVou__5EBF139D" Association="CongTyVanChuyenModel.FK__DVC_VOUCH__maVou__5EBF139D">
+            <End Role="VOUCHER" EntitySet="VOUCHERs" />
+            <End Role="DVC_VOUCHER" EntitySet="DVC_VOUCHER" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="DVC_VOUCHER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="maVoucher" Type="Int32" />
+          <Property Name="maDVC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ngaySuDung" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DONVANCHUYEN" Relationship="CongTyVanChuyenModel.FK__DVC_VOUCH__maDVC__5FB337D6" FromRole="DVC_VOUCHER" ToRole="DONVANCHUYEN" />
+          <NavigationProperty Name="VOUCHER" Relationship="CongTyVanChuyenModel.FK__DVC_VOUCH__maVou__5EBF139D" FromRole="DVC_VOUCHER" ToRole="VOUCHER" />
+        </EntityType>
+        <EntityType Name="VOUCHER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="moTa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="phanTram" Type="Double" />
+          <Property Name="toiDa" Type="Double" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="DVC_VOUCHER" Relationship="CongTyVanChuyenModel.FK__DVC_VOUCH__maVou__5EBF139D" FromRole="VOUCHER" ToRole="DVC_VOUCHER" />
+        </EntityType>
+        <Association Name="FK__DVC_VOUCH__maDVC__5FB337D6">
+          <End Type="CongTyVanChuyenModel.DONVANCHUYEN" Role="DONVANCHUYEN" Multiplicity="0..1" />
+          <End Type="CongTyVanChuyenModel.DVC_VOUCHER" Role="DVC_VOUCHER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONVANCHUYEN">
+              <PropertyRef Name="MaDVC" />
+            </Principal>
+            <Dependent Role="DVC_VOUCHER">
+              <PropertyRef Name="maDVC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DVC_VOUCH__maVou__5EBF139D">
+          <End Type="CongTyVanChuyenModel.VOUCHER" Role="VOUCHER" Multiplicity="0..1" />
+          <End Type="CongTyVanChuyenModel.DVC_VOUCHER" Role="DVC_VOUCHER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VOUCHER">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DVC_VOUCHER">
+              <PropertyRef Name="maVoucher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -699,6 +814,7 @@
           <EntitySetMapping Name="DONVANCHUYENs">
             <EntityTypeMapping TypeName="CongTyVanChuyenModel.DONVANCHUYEN">
               <MappingFragment StoreEntitySet="DONVANCHUYEN">
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="MaDVC" ColumnName="MaDVC" />
                 <ScalarProperty Name="MaChuCuaHang" ColumnName="MaChuCuaHang" />
                 <ScalarProperty Name="TrangThaiVanChuyen" ColumnName="TrangThaiVanChuyen" />
@@ -837,6 +953,29 @@
                 <ScalarProperty Name="MaShipper" ColumnName="MaShipper" />
                 <ScalarProperty Name="MaLoaiVC" ColumnName="MaLoaiVC" />
                 <ScalarProperty Name="NgayGio" ColumnName="NgayGio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DVC_VOUCHER">
+            <EntityTypeMapping TypeName="CongTyVanChuyenModel.DVC_VOUCHER">
+              <MappingFragment StoreEntitySet="DVC_VOUCHER">
+                <ScalarProperty Name="ngaySuDung" ColumnName="ngaySuDung" />
+                <ScalarProperty Name="maDVC" ColumnName="maDVC" />
+                <ScalarProperty Name="maVoucher" ColumnName="maVoucher" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VOUCHERs">
+            <EntityTypeMapping TypeName="CongTyVanChuyenModel.VOUCHER">
+              <MappingFragment StoreEntitySet="VOUCHER">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="toiDa" ColumnName="toiDa" />
+                <ScalarProperty Name="phanTram" ColumnName="phanTram" />
+                <ScalarProperty Name="moTa" ColumnName="moTa" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
