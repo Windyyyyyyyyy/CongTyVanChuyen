@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<p>@ViewBag.ngaytao</p>
+<p>@ViewBag.ngaytao2</p>
 
 <div class="content-wrapper bg-light p-3">
     <section class="content">
@@ -13,8 +15,8 @@
                 </h3>
                 @*<div class="card-tools text-right">
 
-                    <a class="btn btn-sm btn-success" href="~/KhoHang/Create">Thêm</a>
-                </div>*@
+                        <a class="btn btn-sm btn-success" href="~/KhoHang/Create">Thêm</a>
+                    </div>*@
             </div>
             <div style="padding-left: 24px;">
                 @using (Html.BeginForm("Index", "DonVanChuyen", FormMethod.Post, new { @class = "navbar-form navbar-right" }))
@@ -23,7 +25,7 @@
                         <div class="form-group"><input style="background-color:lightgray; width: 300px;" type="text" name="searchString" placeholder="Tìm kiếm" class="form-control" /></div>
                         <div class="form-group" style="padding-left: 5px;"><button type="submit" class="btn btn-primary">Search</button></div>
                     </div>
-                    
+
                 }
             </div>
             <div class="card-body">
@@ -71,7 +73,7 @@
                                 @Html.DisplayFor(modelItem => item.TongTienCuoc)
                             </td>
                             <td>
-                                <i class="fa-regular fa-circle-info">@Html.ActionLink("Chi tiết", "Detail", new { id = item.MaDVC })</i> 
+                                <i class="fa-regular fa-circle-info">@Html.ActionLink("Chi tiết", "Detail", new { id = item.MaDVC })</i>
                             </td>
                             <td>
                                 <i class="far fa-pen-alt">@Html.ActionLink("Cập nhật trạng thái", "Edit", new { id = item.MaDVC })</i>

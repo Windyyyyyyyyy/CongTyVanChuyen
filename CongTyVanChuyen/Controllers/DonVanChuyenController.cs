@@ -1,6 +1,7 @@
 ﻿using CongTyVanChuyen.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,13 @@ namespace CongTyVanChuyen.Controllers
         // GET: DonVanChuyen
         public ActionResult Index(string sortDVC, string searchString, string currentFilter)
         {
+            int count = db.DONVANCHUYENs.Where(a => DbFunctions.TruncateTime(a.NgayTao).Value.Month == 7).Count();
+
+
+            //int sum = db.DONVANCHUYENs.Where(a => DbFunctions.TruncateTime(a.NgayTao).Value.Year == 2023).Sum(a => a.TongTienCuoc); 
+            int yearToSearch = 2023;
+            double sum = db.DONVANCHUYENs.Where(a => DbFunctions.TruncateTime(a.NgayTao).Value.Year == yearToSearch).Sum(a => a.TongTienCuoc);
+            
             var lstDon = db.DONVANCHUYENs.ToList();
 
             ViewBag.currentFilter = searchString;
@@ -25,7 +33,8 @@ namespace CongTyVanChuyen.Controllers
             {
                 lstDon = db.DONVANCHUYENs.ToList();
             }
-
+            ViewBag.ngaytao = count;
+            ViewBag.ngaytao2 = sum;
             return View(lstDon);
         }
         [HttpGet]

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CongTyVanChuyen.Model.THONGKE_HETHONG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "ThongKe", FormMethod.Get))
+{
+    <div class="form-group">
+        <label for="thang">Tháng:</label>
+        <input type="number" class="form-control" id="thang" name="thang" min="1" max="12" />
+    </div>
+    <div class="form-group">
+        <label for="nam">Năm:</label>
+        <input type="number" class="form-control" id="nam" name="nam" min="1900" max="2100" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
+<table class="table">
+    <tr>
+        <th>Tháng</th>
+        <th>Năm</th>
+        <th>Số Lượng Đơn Hàng</th>
+        <th>Tổng Doanh Thu</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>@ViewBag.Thang</td>
+        <td>@ViewBag.Nam</td>
+        <td>@ViewBag.SoLuongDonHang</td>
+        <td>@ViewBag.TongDoanhThu</td>
+        <td></td>
+    </tr>
+</table>
+

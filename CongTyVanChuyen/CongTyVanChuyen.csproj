@@ -133,6 +133,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhoHangController.cs" />
     <Compile Include="Controllers\PhieuNhapXuatController.cs" />
+    <Compile Include="Controllers\ThongKeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -283,6 +284,7 @@
     <Content Include="Views\DonVanChuyen\Index.cshtml" />
     <Content Include="Views\DonVanChuyen\Detail.cshtml" />
     <Content Include="Views\DonVanChuyen\Edit.cshtml" />
+    <Content Include="Views\ThongKe\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

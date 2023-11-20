@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CongTyVanChuyenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CongTyVanChuyenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CHITIETDVC">
           <Key>
             <PropertyRef Name="MaCTDVC" />
@@ -48,6 +48,7 @@
           <Property Name="GhiChu" Type="nvarchar(max)" />
           <Property Name="TienThuHo" Type="float" Nullable="false" />
           <Property Name="TongTienCuoc" Type="float" Nullable="false" />
+          <Property Name="NgayTao" Type="date" />
         </EntityType>
         <EntityType Name="KHOHANG">
           <Key>
@@ -327,8 +328,7 @@
             <End Role="VANCHUYEN" EntitySet="VANCHUYEN" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CongTyVanChuyenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -383,6 +383,7 @@
           <NavigationProperty Name="CHUCUAHANG" Relationship="Self.FK__DONVANCHU__MaChu__2A4B4B5E" FromRole="DONVANCHUYEN" ToRole="CHUCUAHANG" />
           <NavigationProperty Name="TRANGTHAIDVC" Relationship="Self.FK__DONVANCHU__Trang__2B3F6F97" FromRole="DONVANCHUYEN" ToRole="TRANGTHAIDVC" />
           <NavigationProperty Name="VANCHUYENs" Relationship="Self.FK__VANCHUYEN__MaDVC__38996AB5" FromRole="DONVANCHUYEN" ToRole="VANCHUYEN" />
+          <Property Name="NgayTao" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="KHOHANG">
           <Key>
@@ -712,6 +713,7 @@
           <EntitySetMapping Name="DONVANCHUYENs">
             <EntityTypeMapping TypeName="CongTyVanChuyenModel.DONVANCHUYEN">
               <MappingFragment StoreEntitySet="DONVANCHUYEN">
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="MaDVC" ColumnName="MaDVC" />
                 <ScalarProperty Name="MaChuCuaHang" ColumnName="MaChuCuaHang" />
                 <ScalarProperty Name="TrangThaiVanChuyen" ColumnName="TrangThaiVanChuyen" />
