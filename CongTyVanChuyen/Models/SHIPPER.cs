@@ -28,6 +28,8 @@ namespace CongTyVanChuyen.Models
         public string CCCD { get; set; }
         public string DiaChi { get; set; }
         public string MatKhau { get; set; }
+        public Nullable<int> diemTichLuy { get; set; }
+        public Nullable<short> soLanCancel { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHIEUNHAPXUATKHO> PHIEUNHAPXUATKHOes { get; set; }

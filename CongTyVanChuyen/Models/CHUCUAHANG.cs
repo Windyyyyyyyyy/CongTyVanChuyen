@@ -36,5 +36,9 @@ namespace CongTyVanChuyen.Models
         public virtual ICollection<DONVANCHUYEN> DONVANCHUYENs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HANGHOA> HANGHOAs { get; set; }
+        public string getDiaChi()
+        {
+            return "" + DiaChi + ", " + PhuongXa + ", " + QuanHuyen + ", " + TinhTP;
+        }
     }
 }

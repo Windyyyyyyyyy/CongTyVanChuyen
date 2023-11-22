@@ -170,6 +170,7 @@
     <Compile Include="Areas\Admin\Controllers\VOUCHERsController.cs" />
     <Compile Include="Controllers\DonVanChuyenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuanLyDonHangShipperController.cs" />
     <Compile Include="Controllers\QuanLyDVCController.cs" />
     <Compile Include="Controllers\ShipperController.cs" />
     <Compile Include="Controllers\VNPAYController.cs" />
@@ -393,6 +394,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\detailsShipper.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -521,10 +523,18 @@
     <Content Include="Views\Shipper\Details.cshtml" />
     <Content Include="Views\Home\DichVu.cshtml" />
     <Content Include="Views\Home\TraCuuDonHang.cshtml" />
+    <Content Include="Views\QuanLyDonHangShipper\DanhSachDonVanChuyen.cshtml" />
+    <Content Include="Views\Shared\_LayoutTest.cshtml" />
+    <Content Include="Views\QuanLyDonHangShipper\Details.cshtml" />
+    <Content Include="Views\QuanLyDonHangShipper\ChuyenTiep.cshtml" />
+    <Content Include="Views\QuanLyDonHangShipper\DangNhap.cshtml" />
+    <Content Include="Views\QuanLyDonHangShipper\GiaoHang.cshtml" />
+    <Content Include="Views\QuanLyDonHangShipper\DonThanhCong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Images\" />
     <Folder Include="Views\VNPAY\" />
   </ItemGroup>
   <ItemGroup>

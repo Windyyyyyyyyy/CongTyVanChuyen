@@ -95,7 +95,7 @@
             </td>
             <td>
                 @Html.ActionLink("Chi tiết", "Details", new { id = item.MaDVC }, new { @class = "btn btn-primary" })
-                @if (item.TRANGTHAIDVC.id == 1)
+                @if (item.TRANGTHAIDVC.id == 1 || item.TRANGTHAIDVC.id == 13)
                 {
                     @Html.ActionLink("Assign", "Assign", new { id = item.MaDVC }, new { @class = "btn btn-info" })
                 }

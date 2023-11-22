@@ -46,8 +46,7 @@ namespace CongTyVanChuyen.Models
         public virtual ICollection<DVC_VOUCHER> DVC_VOUCHER { get; set; }
         public string getDiaChi()
         {
-            string diachi = "" + DiaChi + ", " + Quan + ", " + Phuong + ", " + ThanhPho;
-            return diachi;
+            return "" + DiaChi + ", " + Phuong + ", " + Quan + ", " + ThanhPho;
         }
     }
 }

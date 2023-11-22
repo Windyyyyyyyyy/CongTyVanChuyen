@@ -1,0 +1,101 @@
+﻿@model CongTyVanChuyen.Models.VANCHUYEN
+
+@{
+    ViewBag.Title = "DonThanhCong";
+    Layout = "~/Views/Shared/_LayoutTest.cshtml";
+}
+
+<link href="~/Content/detailsShipper.css" rel="stylesheet" />
+<section class="h-100 h-custom" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-8 col-xl-6">
+                <div class="card border-top border-bottom border-3" style="border-color: #f37a27 !important;">
+                    <div class="card-body p-5">
+
+                        <p class="lead fw-bold mb-5" style="color: #f37a27;">Chi tiết đơn vận chuyển @Model.id</p>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <p class="small text-muted mb-1">Tên người nhận</p>
+                                <p>@Model.DONVANCHUYEN.TenNguoiNhan</p>
+                            </div>
+                            <div class="col mb-3">
+                                <p class="small text-muted mb-1">Thông tin</p>
+                                <p>@Model.DONVANCHUYEN.getDiaChi() - @Model.DONVANCHUYEN.SDT</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <p class="small text-muted mb-1">Ngày tạo</p>
+                                <p>@Model.DONVANCHUYEN.NgayTao</p>
+                            </div>
+                            <div class="col mb-3">
+                                <p class="small text-muted mb-1">Mã đơn vận chuyển</p>
+                                <p>@Model.MaDVC</p>
+                            </div>
+                        </div>
+
+
+                        <div class="mx-n5 px-5 py-4" style="background-color: #f2f2f2;">
+                            @foreach (var item in Model.DONVANCHUYEN.HANGHOAs)
+                            {
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-9">
+                                        <p>@item.TenHangHoa</p>
+                                    </div>
+                                    <div class="col-md-4 col-lg-3">
+                                        <p>@string.Format("{0:#,##0}", item.GiaTri)</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="row my-4">
+
+                            <div class="col-md-4 offset-md-8 col-lg-6 offset-lg-6">
+
+                                <p class="lead fw-bold mb-0" style="color: #f37a27;">Tiền thu hộ: @string.Format("{0:#,##0}", Model.DONVANCHUYEN.TienThuHo)</p>
+                            </div>
+                        </div>
+
+                        <p class="lead fw-bold mb-4 pb-2" style="color: #f37a27;">Thông tin người gửi</p>
+
+                        <div class="row">
+                            <div class="col mb-3">
+                                <p class="small text-muted mb-1">Tên người gửi</p>
+                                <p>@Model.DONVANCHUYEN.CHUCUAHANG.TenChuCuaHang</p>
+                            </div>
+                            <div class="col mb-3">
+                                <p class="small text-muted mb-1">Địa chỉ</p>
+                                <p>@Model.DONVANCHUYEN.CHUCUAHANG.getDiaChi()</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <p class="small text-muted mb-1">Số điện thoại</p>
+                                <p>@Model.DONVANCHUYEN.CHUCUAHANG.SDT</p>
+                            </div>
+
+                        </div>
+                        <p class="lead fw-bold mb-4 pb-2" style="color: #f37a27;">Thông tin vận chuyển</p>
+                        <div class="row">
+                            <div class="col mb-3 container py-5 h-100">
+                                <p class="small text-muted mb-1">Hình ảnh giao hàng</p>
+                                <img src="~/Images/@Model.hinhAnh" class="img-fluid"/>
+                            </div>
+                         
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <p class="small text-muted mb-1">Ghi chú</p>
+                                <p>@Model.ghiChu</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

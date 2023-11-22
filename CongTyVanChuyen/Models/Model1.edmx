@@ -115,6 +115,8 @@
           <Property Name="CCCD" Type="char" MaxLength="12" Nullable="false" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
           <Property Name="MatKhau" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="diemTichLuy" Type="int" />
+          <Property Name="soLanCancel" Type="smallint" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -160,6 +162,12 @@
           <Property Name="MaShipper" Type="int" />
           <Property Name="MaLoaiVC" Type="int" />
           <Property Name="NgayGio" Type="datetime" />
+          <Property Name="hinhAnh" Type="text" />
+          <Property Name="TuChoi" Type="bit" />
+          <Property Name="Nhan" Type="bit" />
+          <Property Name="chuyenShipper" Type="int" />
+          <Property Name="isDone" Type="bit" />
+          <Property Name="ghiChu" Type="text" />
         </EntityType>
         <EntityType Name="VOUCHER">
           <Key>
@@ -505,6 +513,8 @@
           <Property Name="MatKhau" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="PHIEUNHAPXUATKHOes" Relationship="Self.FK__PHIEUNHAP__MaShi__4316F928" FromRole="SHIPPER" ToRole="PHIEUNHAPXUATKHO" />
           <NavigationProperty Name="VANCHUYENs" Relationship="Self.FK__VANCHUYEN__MaShi__398D8EEE" FromRole="SHIPPER" ToRole="VANCHUYEN" />
+          <Property Name="diemTichLuy" Type="Int32" />
+          <Property Name="soLanCancel" Type="Int16" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -554,6 +564,12 @@
           <NavigationProperty Name="DONVANCHUYEN" Relationship="Self.FK__VANCHUYEN__MaDVC__38996AB5" FromRole="VANCHUYEN" ToRole="DONVANCHUYEN" />
           <NavigationProperty Name="LOAIVANCHUYEN" Relationship="Self.FK__VANCHUYEN__MaLoa__3A81B327" FromRole="VANCHUYEN" ToRole="LOAIVANCHUYEN" />
           <NavigationProperty Name="SHIPPER" Relationship="Self.FK__VANCHUYEN__MaShi__398D8EEE" FromRole="VANCHUYEN" ToRole="SHIPPER" />
+          <Property Name="hinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TuChoi" Type="Boolean" />
+          <Property Name="Nhan" Type="Boolean" />
+          <Property Name="chuyenShipper" Type="Int32" />
+          <Property Name="isDone" Type="Boolean" />
+          <Property Name="ghiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__DONVANCHU__MaChu__2A4B4B5E">
           <End Role="CHUCUAHANG" Type="Self.CHUCUAHANG" Multiplicity="0..1" />
@@ -896,6 +912,8 @@
           <EntitySetMapping Name="SHIPPERs">
             <EntityTypeMapping TypeName="CongTyVanChuyenModel.SHIPPER">
               <MappingFragment StoreEntitySet="SHIPPER">
+                <ScalarProperty Name="soLanCancel" ColumnName="soLanCancel" />
+                <ScalarProperty Name="diemTichLuy" ColumnName="diemTichLuy" />
                 <ScalarProperty Name="MaShipper" ColumnName="MaShipper" />
                 <ScalarProperty Name="TenShipper" ColumnName="TenShipper" />
                 <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
@@ -948,6 +966,12 @@
           <EntitySetMapping Name="VANCHUYENs">
             <EntityTypeMapping TypeName="CongTyVanChuyenModel.VANCHUYEN">
               <MappingFragment StoreEntitySet="VANCHUYEN">
+                <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
+                <ScalarProperty Name="isDone" ColumnName="isDone" />
+                <ScalarProperty Name="chuyenShipper" ColumnName="chuyenShipper" />
+                <ScalarProperty Name="Nhan" ColumnName="Nhan" />
+                <ScalarProperty Name="TuChoi" ColumnName="TuChoi" />
+                <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="MaDVC" ColumnName="MaDVC" />
                 <ScalarProperty Name="MaShipper" ColumnName="MaShipper" />
