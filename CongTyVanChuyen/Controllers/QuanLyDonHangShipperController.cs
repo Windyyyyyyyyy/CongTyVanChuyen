@@ -1,4 +1,5 @@
 ﻿using CongTyVanChuyen.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.ModelBinding;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace CongTyVanChuyen.Controllers
 {
@@ -26,7 +28,7 @@ namespace CongTyVanChuyen.Controllers
             Session["shipper"] = shipper;
             return Redirect("DanhSachDonVanChuyen");
         }
-        public ActionResult DanhSachDonVanChuyen(int? sort)
+        public ActionResult DanhSachDonVanChuyen(int? sort, int? page)
         {
             SHIPPER shipper = Session["shipper"] as SHIPPER;
             var list = db.VANCHUYENs.Where(a => a.MaShipper == shipper.MaShipper && a.chuyenShipper == null && a.Nhan == null && a.TuChoi == null).ToList();
@@ -49,8 +51,13 @@ namespace CongTyVanChuyen.Controllers
                     break;
                
             }
-
-            return View(list);
+            if(sort != null)
+            {
+                ViewBag.sort = sort;
+            }
+            int pageSize = 10;
+            int pageNum = (page ?? 1);
+            return View(list.ToPagedList(pageNum, pageSize));
         }
         public ActionResult Details(int id)
         {

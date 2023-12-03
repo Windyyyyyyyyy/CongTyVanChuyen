@@ -1,4 +1,5 @@
 ﻿using CongTyVanChuyen.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +12,35 @@ namespace CongTyVanChuyen.Controllers
     {
         // GET: QuanLyDVC
         CongTyVanChuyenEntities db = new CongTyVanChuyenEntities();
-        public ActionResult Index(int? TrangThai)
+        public ActionResult Index(int? TrangThai, int? page)
         {
-            ViewBag.TrangThai = new SelectList(db.TRANGTHAIDVCs, "id", "TrangThai");
-            
-            var listDVC = db.DONVANCHUYENs.Where(dvc => dvc.TrangThaiVanChuyen == 1).ToList(); 
+            ViewBag.TrangThai = new SelectList(db.TRANGTHAIDVCs, "id", "TrangThai", TrangThai);
+
+            var listDVC = db.DONVANCHUYENs.Where(dvc => dvc.TrangThaiVanChuyen == 1).ToList();
             if (TrangThai != null)
+            {
                 listDVC = db.DONVANCHUYENs.Where(dvc => dvc.TrangThaiVanChuyen == TrangThai).ToList();
-            return View(listDVC);
+                ViewBag.currentStatus = TrangThai;
+            }
+                
+
+
+            int pageSize = 10;
+            int pageNum = (page ?? 1);
+            
+            return View(listDVC.ToPagedList(pageNum, pageSize));
         }
+        //public ActionResult Index(int? TrangThai, int? page)
+        //{
+        //    ViewBag.TrangThai = new SelectList(db.TRANGTHAIDVCs, "id", "TrangThai");
+
+        //    var listDVC = db.DONVANCHUYENs.Where(dvc => dvc.TrangThaiVanChuyen == 1).ToList(); 
+        //    if (TrangThai != null)
+        //        listDVC = db.DONVANCHUYENs.Where(dvc => dvc.TrangThaiVanChuyen == TrangThai).ToList();
+        //    int pageSize = 1;
+        //    int pageNum = (page ?? 1);
+        //    return View(listDVC.ToPagedList(pageNum, pageSize));
+        //}
         public ActionResult Details(string id)
         {
             var hanghoa = db.HANGHOAs.Where(hh => hh.MaDVC.Equals(id)).ToList();
