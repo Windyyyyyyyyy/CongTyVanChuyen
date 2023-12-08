@@ -1,0 +1,55 @@
+﻿@model CongTyVanChuyen.Model.THONGTINWEBSITE
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>THÊM</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>THÔNG TIN WEBSITE</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.MaThongTin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaThongTin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaThongTin, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ThongTin, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <p class="control-label col-md-2"><strong>THÔNG TIN</strong></p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ThongTin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ThongTin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label col-md-2"><strong>LOẠI THÔNG TIN</strong></p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LoaiThongTin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LoaiThongTin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="THÊM" class="btn btn-success" />
+                <span style="margin-left: 10px;"></span>
+                @Html.ActionLink("BACK", "Index", null, new { @class = "btn btn-primary"})
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+    @Html.ActionLink("BACK", "Index")
+</div>*@

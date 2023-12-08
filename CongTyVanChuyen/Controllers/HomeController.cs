@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CongTyVanChuyen.Model;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,10 +10,13 @@ namespace CongTyVanChuyen.Controllers
 {
     public class HomeController : Controller
     {
+        CongTyVanChuyenEntities database = new CongTyVanChuyenEntities();
         public ActionResult Index()
         {
             return View();
         }
+
+        
 
         public ActionResult About()
         {

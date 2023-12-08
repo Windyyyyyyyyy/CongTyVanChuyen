@@ -21,7 +21,22 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+
+                    @if (Session["Nhanvien"] != null)
+                    {
+                        <li>
+                            <a>Xin chao: @Session["TenNV"]</a>
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Đăng xuất", "Logout", "QLKho")
+                        </li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Đăng nhập", "Login", "QLKho")</li>
+                    }
+
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
             </div>
